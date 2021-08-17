@@ -1,11 +1,15 @@
 import './App.css';
 import SetPages from './SetPages';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App() {
   return (
-    <div className="App">
-      <SetPages />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <SetPages />
+      </div>
+    </Provider>
   );
 }
 
