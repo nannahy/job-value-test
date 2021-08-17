@@ -123,7 +123,6 @@ export const Body = styled.div`
     margin: 30px 0;
 `;
 
-<<<<<<< HEAD
 export const QuestionBox = ({qNum, option1, option2, desc1, desc2, score1, score2, buttonClick}) => {
     const handleClick = (e) => {
         const idx = e.target.name
