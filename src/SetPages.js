@@ -1,6 +1,7 @@
 import { BrowserRouter, Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Start from './Start';
-import Test, { TestExample, TestFinished } from './Test';
+import { TestExample, Test } from './Test';
+import TestFinished from './TestFinished';
 import Result from './Result';
 
 const NotFoundPage = () => {
