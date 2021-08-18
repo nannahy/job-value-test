@@ -17,7 +17,7 @@ const Test = () => {
     const history = useHistory();
     const [questionList, setQuestionList] = useState([]);
     const [userAnswer, setUserAnswer] = useState({});
-    const answer = useSelector(state => state.name);
+    const answer = useSelector(state => state.answer);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -25,8 +25,6 @@ const Test = () => {
             const response = await axios.get('https://www.career.go.kr/inspct/openapi/test/questions?apikey=91ba033859063edfb432487e1853ddb1&q=6');
             // &offset=n&limit=5 ????????????
             setQuestionList(response.data.RESULT);
-            console.log(response);
-            console.log(questionList);
         })();
     }, []);
 
@@ -34,12 +32,17 @@ const Test = () => {
         const newAnswer = {...userAnswer}
         newAnswer[idx] = `B${idx}=${value}`
         setUserAnswer(newAnswer);
+        dispatch(addAnswer(userAnswer));
     }
 
     const checked = (qNum) => {
         // answer에 자신의 qNum이 존재하는가? true : false
-        console.log('check', answer['15'])
-        return true
+        if (answer[qNum]) {
+            const a = answer[qNum].split('=')[1];
+            return {bool: true, answerScore: a}
+        } else {
+            return {bool: false, answerScore: null}
+        }
     }
 
     const checkActive = () => {
@@ -47,7 +50,6 @@ const Test = () => {
     }
 
     const handleClick = (e) => {
-        dispatch(addAnswer(userAnswer));
         e.target.name === 'prev'? history.push('/test-example') : history.push('./test-finished')
     }
 

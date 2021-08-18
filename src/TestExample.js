@@ -36,6 +36,7 @@ const TestExample = () => {
                     desc1='직업을 통해 자신의 능력을 발휘하는 것입니다.'
                     desc2='일하는 시간과 방식에 대해서 스스로 결정할 수 있는 것입니다.'
                     optionClick={(e) => optionClick(e)}
+                    checked={{bool: false, answerScore: null}}
                 />
             </Body>
             <Footer>

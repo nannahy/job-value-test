@@ -130,8 +130,18 @@ export const QuestionBox = ({qNum, option1, option2, desc1, desc2, score1, score
         return optionClick(idx, value)
     }
     
-    const handleCheck = (checked) => {
-        return checked? true : false
+    const handleCheck = (value) => {
+        // !checked? false:
+        // // answerScore score 같은가? true : false
+        console.log(value, checked);
+        if (checked.bool === false) {
+            console.log(false)
+            return false
+        }
+        if (value === checked.answerScore) {
+            console.log(true)
+            return true
+        }
     }
 
     return (
@@ -144,7 +154,7 @@ export const QuestionBox = ({qNum, option1, option2, desc1, desc2, score1, score
                     name={qNum} 
                     value={score1} 
                     onClick={(e) => handleClick(e)}
-                    defaultChecked={false}
+                    defaultChecked={handleCheck(score1)}
                 />{option1}</label>
                 <label><input 
                     type='radio' 
@@ -152,7 +162,7 @@ export const QuestionBox = ({qNum, option1, option2, desc1, desc2, score1, score
                     name={qNum} 
                     value={score2} 
                     onClick={(e) => handleClick(e)}
-                    defaultChecked={false}
+                    defaultChecked={handleCheck(score2)}
                 />{option2}</label>
             </div>
             <p>*{option1}: {desc1}</p>
