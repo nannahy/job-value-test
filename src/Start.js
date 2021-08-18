@@ -50,7 +50,7 @@ const Start = () => {
                     />여자</label>
                 </InfoContainer>
                 <Button
-                    disabled={!userName || !userGender}
+                    // disabled={!userName || !userGender}
                     onClick={handleSubmit}
                 >검사하기</Button>
             </BasicContainer>

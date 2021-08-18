@@ -8,9 +8,8 @@ export const setGender = (gender) => ({
     gender,
 });
 
-export const addAnswer = (idx, answer) => ({
+export const addAnswer = (answer) => ({
     type: "ADD_ANSWER",
-    idx,
     answer,
 });
 

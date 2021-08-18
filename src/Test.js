@@ -10,56 +10,45 @@ import {
     InputRadio,
     Footer,
 } from "./components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addAnswer } from "./redux/action";
 
-export const TestExample = () => {
-    const history = useHistory();
-
-    const name = useSelector((state) => state.name)
-    const gender = useSelector((state) => state.gender)
-    console.log(name, gender);
-
-    return (
-        <TestContainer>
-            <Header>
-                <h2>검사예시</h2>
-                <p>0%</p>
-                <ProgressBar progressRate='50'/>
-            </Header>
-            <Body>
-                <p>직업과관련된 두 개의 가치 중에서 자신에게 더 중요한 가치에 표시하세요. 가치의 뜻을 잘 모르겠다면 문항 아래에 있는 가치의 설명을 확인해보세요.</p>
-                <QuestionBox qNum='0' />
-            </Body>
-            <Footer>
-                <button onClick={() => history.push('/start')}>이전</button>
-                <button onClick={() => history.push('/test')}>다음</button>
-            </Footer>
-        </TestContainer>
-    )
-};
-
-export const Test = () => {
+const Test = () => {
     const history = useHistory();
     const [questionList, setQuestionList] = useState([]);
-
-    const [userAnser, setUserAnswer] = useState();
+    const [userAnswer, setUserAnswer] = useState({});
+    const answer = useSelector(state => state.name);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         (async function() {
             const response = await axios.get('https://www.career.go.kr/inspct/openapi/test/questions?apikey=91ba033859063edfb432487e1853ddb1&q=6');
+            // &offset=n&limit=5 ????????????
             setQuestionList(response.data.RESULT);
             console.log(response);
             console.log(questionList);
-            
-            // const response2 = await axios.post('https://www.career.go.kr/inspct/openapi/test/report?apikey=91ba033859063edfb432487e1853ddb1&q=6/', '')
-            // console.log(response2.data)
         })();
     }, []);
 
-    const buttonClick = (idx, value) => {
-        const answer = `B${idx}=${value}`
-        console.log('answer', answer)
-        return answer
+    const optionClick = (idx, value) => {
+        const newAnswer = {...userAnswer}
+        newAnswer[idx] = `B${idx}=${value}`
+        setUserAnswer(newAnswer);
+    }
+
+    const checked = (qNum) => {
+        // answer에 자신의 qNum이 존재하는가? true : false
+        console.log('check', answer['15'])
+        return true
+    }
+
+    const checkActive = () => {
+        return questionList.length !== Object.keys(userAnswer).length
+    }
+
+    const handleClick = (e) => {
+        dispatch(addAnswer(userAnswer));
+        e.target.name === 'prev'? history.push('/test-example') : history.push('./test-finished')
     }
 
     return (
@@ -80,13 +69,16 @@ export const Test = () => {
                     desc2={item.answer04}
                     score1={item.answerScore01}
                     score2={item.answerScore02}
-                    buttonClick={buttonClick}
+                    optionClick={optionClick}
+                    checked={checked(item.qitemNo)}
                 />)}
             </Body>
             <Footer>
-                <button onClick={() => history.push('/test-example')}>이전</button>
-                <button onClick={() => history.push('/test-finished')}>다음</button>
+                <button name='prev'  onClick={(e) => handleClick(e)}>이전</button>
+                <button name='next' disabled={false} onClick={(e) => handleClick(e)}>다음</button>
             </Footer>
         </TestContainer>
     )
 };
+
+export default Test;

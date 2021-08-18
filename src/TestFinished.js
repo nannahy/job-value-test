@@ -1,8 +1,35 @@
 import { useHistory } from "react-router";
 import { BasicContainer, Button } from "./components";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { useEffect } from "react";
 
 const TestFinished = () => {
     const history = useHistory();
+    const name = useSelector(state => state.name);
+    const gender = useSelector(state => state.gender);
+    const answer = useSelector(state => state.answer);
+
+    const answerString = Object.values(answer).join(' ');
+    const timeStamp = new Date().getTime();
+
+    console.log(name, gender, answer);
+
+    useEffect(() => {
+        (async function() {
+            const response = await axios.post('https://www.career.go.kr/inspct/openapi/test/report?apikey=91ba033859063edfb432487e1853ddb1&qestrnSeq=6', {
+                "apikey": '91ba033859063edfb432487e1853ddb1',
+                "qestrnSeq": '6',
+                "trgetSe": "100209",
+                "name": name,
+                "gender": gender === 'male'? 100323 : 100324,
+                "grade": '',
+                "startDtm": timeStamp,
+                "answers": answerString,
+            });
+            console.log(response);
+        })();
+    }, []);
 
     return (
         <BasicContainer>

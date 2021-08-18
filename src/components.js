@@ -123,12 +123,17 @@ export const Body = styled.div`
     margin: 30px 0;
 `;
 
-export const QuestionBox = ({qNum, option1, option2, desc1, desc2, score1, score2, buttonClick}) => {
+export const QuestionBox = ({qNum, option1, option2, desc1, desc2, score1, score2, optionClick, checked}) => {
     const handleClick = (e) => {
         const idx = e.target.name
         const value = e.target.value
-        return buttonClick(idx, value)
+        return optionClick(idx, value)
     }
+    
+    const handleCheck = (checked) => {
+        return checked? true : false
+    }
+
     return (
         <Option>
             <h3>Q{qNum}</h3>
@@ -139,6 +144,7 @@ export const QuestionBox = ({qNum, option1, option2, desc1, desc2, score1, score
                     name={qNum} 
                     value={score1} 
                     onClick={(e) => handleClick(e)}
+                    defaultChecked={false}
                 />{option1}</label>
                 <label><input 
                     type='radio' 
@@ -146,6 +152,7 @@ export const QuestionBox = ({qNum, option1, option2, desc1, desc2, score1, score
                     name={qNum} 
                     value={score2} 
                     onClick={(e) => handleClick(e)}
+                    defaultChecked={false}
                 />{option2}</label>
             </div>
             <p>*{option1}: {desc1}</p>
