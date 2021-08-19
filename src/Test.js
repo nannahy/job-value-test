@@ -19,7 +19,7 @@ import { addAnswer } from "./redux/action";
 const Test = () => {
   const history = useHistory();
   const [questionList, setQuestionList] = useState([]);
-  const [page, setPage] = useState([]);
+  const [page, setPage] = useState([0]);
   const [currPage, setCurrPage] = useState(0);
   const [userAnswer, setUserAnswer] = useState({});
   const answer = useSelector(state => state.answer);
@@ -101,10 +101,21 @@ const Test = () => {
       </Header>
       <Body>
         <Content>
-          ({currPage + 1}~{currPage + 5})직업과관련된 두 개의 가치 중에서
-          자신에게 더 중요한 가치에 표시하세요.
+          {/* {page[currPage] === undefined ? (
+            <div />
+          ) : (
+            `(${page[currPage][0].qNum}~${Math.min(
+              page[currPage][0].qNum + 4,
+              28,
+            )}
+          )`
+          )} */}
+          직업과 관련된 두 개의 가치 중에서 자신에게 더 중요한 가치에
+          표시하세요.
         </Content>
-        {page && (
+        {!page ? (
+          <div />
+        ) : (
           <PageContent
             page={page[currPage]}
             optionClick={optionClick}

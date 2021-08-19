@@ -1,4 +1,9 @@
-import { OptionBox, InfoContainer, Input } from "./styledComponents";
+import {
+  OptionBox,
+  InfoContainer,
+  Input,
+  DescContainer,
+} from "./styledComponents";
 
 // start
 export const UserInfoBox = ({ userInfo, setUserInfo }) => {
@@ -72,14 +77,14 @@ const Option = ({ qNum, score, option, click, checked }) => {
 
 const DescBox = ({ option1, option2, desc1, desc2 }) => {
   return (
-    <div>
+    <DescContainer>
       <p>
         *{option1}: {desc1}
       </p>
       <p>
         *{option2}: {desc2}
       </p>
-    </div>
+    </DescContainer>
   );
 };
 
