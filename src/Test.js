@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -12,12 +13,14 @@ import {
   Content,
   Footer,
 } from "./styledComponents";
-import { QuestionBox } from "./components";
+import { QuestionBox, PageContent } from "./components";
 import { addAnswer } from "./redux/action";
 
 const Test = () => {
   const history = useHistory();
   const [questionList, setQuestionList] = useState([]);
+  const [page, setPage] = useState([]);
+  const [currPage, setCurrPage] = useState(0);
   const [userAnswer, setUserAnswer] = useState({});
   const answer = useSelector(state => state.answer);
   const dispatch = useDispatch();
@@ -41,6 +44,12 @@ const Test = () => {
       }));
 
       setQuestionList(qObjList);
+      const newPage = [];
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i <= qObjList.length; i += 5) {
+        newPage.push(qObjList.slice(i, i + 5));
+      }
+      setPage(newPage);
     })();
   }, []);
 
@@ -62,6 +71,7 @@ const Test = () => {
 
   // eslint-disable-next-line no-unused-vars
   const checkActive = () => {
+    console.log(questionList.length, Object.keys(userAnswer));
     return questionList.length !== Object.keys(userAnswer).length;
   };
 
@@ -70,6 +80,16 @@ const Test = () => {
     e.target.name === "prev"
       ? history.push("/test-example")
       : history.push("./test-finished");
+  };
+
+  const handleClick2 = e => {
+    if (e.target.name === "prev") {
+      currPage === 0 && history.push("/test-example");
+      setCurrPage(curr => curr - 1);
+    } else {
+      currPage === page.length - 1 && history.push("./test-finished");
+      setCurrPage(curr => curr + 1);
+    }
   };
 
   return (
@@ -81,33 +101,26 @@ const Test = () => {
       </Header>
       <Body>
         <Content>
-          직업과관련된 두 개의 가치 중에서 자신에게 더 중요한 가치에 표시하세요.
+          ({currPage + 1}~{currPage + 5})직업과관련된 두 개의 가치 중에서
+          자신에게 더 중요한 가치에 표시하세요.
         </Content>
-        {questionList.map(item => (
-          <QuestionBox
-            key={item.qNum}
-            qNum={item.qNum}
-            option1={item.option1}
-            option2={item.option2}
-            desc1={item.desc1}
-            desc2={item.desc2}
-            score1={item.score1}
-            score2={item.score2}
+        {page && (
+          <PageContent
+            page={page[currPage]}
             optionClick={optionClick}
-            checked={checked(item.qNum)}
-            div={item}
+            checked={checked}
           />
-        ))}
+        )}
       </Body>
       <Footer>
-        <button type="button" name="prev" onClick={e => handleClick(e)}>
+        <button type="button" name="prev" onClick={e => handleClick2(e)}>
           이전
         </button>
         <button
           type="button"
           name="next"
-          disabled={checkActive()}
-          onClick={e => handleClick(e)}
+          // disabled={checkActive()}
+          onClick={e => handleClick2(e)}
         >
           다음
         </button>

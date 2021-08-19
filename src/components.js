@@ -46,7 +46,7 @@ const Option = ({ qNum, score, option, click, checked }) => {
   const handleClick = e => {
     const idx = e.target.name;
     const { value } = e.target;
-    return click(idx, value);
+    click(idx, value);
   };
 
   // eslint-disable-next-line consistent-return
@@ -93,7 +93,6 @@ export const QuestionBox = ({
   score2,
   optionClick,
   checked,
-  div,
 }) => {
   return (
     <OptionBox>
@@ -119,4 +118,26 @@ export const QuestionBox = ({
       />
     </OptionBox>
   );
+};
+
+export const PageContent = ({ page, optionClick, checked }) => {
+  if (page) {
+    const contentList = page.map(item => (
+      <QuestionBox
+        key={item.qNum}
+        qNum={item.qNum}
+        option1={item.option1}
+        option2={item.option2}
+        desc1={item.desc1}
+        desc2={item.desc2}
+        score1={item.score1}
+        score2={item.score2}
+        optionClick={optionClick}
+        checked={checked(item.qNum)}
+        div={item}
+      />
+    ));
+    return contentList;
+  }
+  return <div />;
 };
