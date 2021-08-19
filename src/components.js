@@ -115,7 +115,7 @@ const ProgressStatus = styled.div`
   }
 `;
 
-export const ProgressBar = (progressRate) => {
+export const ProgressBar = progressRate => {
   return (
     <>
       <ProgressStatus>
@@ -142,14 +142,14 @@ export const QuestionBox = ({
   optionClick,
   checked,
 }) => {
-  const handleClick = (e) => {
+  const handleClick = e => {
     const idx = e.target.name;
     const { value } = e.target;
     return optionClick(idx, value);
   };
 
   // eslint-disable-next-line consistent-return
-  const handleCheck = (value) => {
+  const handleCheck = value => {
     // !checked? false:
     // // answerScore score 같은가? true : false
     if (checked.bool === false) {
@@ -170,7 +170,7 @@ export const QuestionBox = ({
             className="btn"
             name={qNum}
             value={score1}
-            onClick={(e) => handleClick(e)}
+            onClick={e => handleClick(e)}
             defaultChecked={handleCheck(score1)}
           />
           {option1}
@@ -181,7 +181,7 @@ export const QuestionBox = ({
             className="btn"
             name={qNum}
             value={score2}
-            onClick={(e) => handleClick(e)}
+            onClick={e => handleClick(e)}
             defaultChecked={handleCheck(score2)}
           />
           {option2}

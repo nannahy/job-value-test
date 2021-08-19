@@ -8,9 +8,9 @@ import { BasicContainer, Button } from "./components";
 
 const TestFinished = () => {
   const history = useHistory();
-  const name = useSelector((state) => state.name);
-  const gender = useSelector((state) => state.gender);
-  const answer = useSelector((state) => state.answer);
+  const name = useSelector(state => state.name);
+  const gender = useSelector(state => state.gender);
+  const answer = useSelector(state => state.answer);
 
   const answerString = Object.values(answer).join(" ");
   const timeStamp = new Date().getTime();
