@@ -1,7 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import {
-  QuestionBox,
   TestContainer,
   Header,
   Title,
@@ -11,7 +10,8 @@ import {
   Content,
   Footer,
   Button,
-} from "./components";
+} from "./styledComponents";
+import { QuestionBox } from "./components";
 
 const TestExample = () => {
   const history = useHistory();

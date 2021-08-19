@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { TestContainer, Button } from "./components";
+import { TestContainer, Button } from "./styledComponents";
 
 const Result = () => {
   const history = useHistory();

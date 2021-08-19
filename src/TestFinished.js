@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect } from "react";
-import { BasicContainer, Button } from "./components";
+import { BasicContainer, Button } from "./styledComponents";
 
 const TestFinished = () => {
   const history = useHistory();

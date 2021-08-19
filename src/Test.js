@@ -3,13 +3,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  QuestionBox,
   TestContainer,
   Header,
+  Title,
+  ProgressPercentile,
   ProgressBar,
   Body,
+  Content,
   Footer,
-} from "./components";
+} from "./styledComponents";
+import { QuestionBox } from "./components";
 import { addAnswer } from "./redux/action";
 
 const Test = () => {
@@ -25,7 +28,19 @@ const Test = () => {
       const response = await axios.get(
         "https://www.career.go.kr/inspct/openapi/test/questions?apikey=91ba033859063edfb432487e1853ddb1&q=6",
       );
-      setQuestionList(response.data.RESULT);
+
+      const qList = response.data.RESULT;
+      const qObjList = qList.map(item => ({
+        qNum: item.qitemNo,
+        option1: item.answer01,
+        option2: item.answer02,
+        desc1: item.answer03,
+        desc2: item.answer04,
+        score1: item.answerScore01,
+        score2: item.answerScore02,
+      }));
+
+      setQuestionList(qObjList);
     })();
   }, []);
 
@@ -60,38 +75,38 @@ const Test = () => {
   return (
     <TestContainer>
       <Header>
-        <h2>검사진행</h2>
-        <p>0%</p>
+        <Title>검사진행</Title>
+        <ProgressPercentile>0%</ProgressPercentile>
         <ProgressBar progressRate="33" />
       </Header>
       <Body>
-        <p>
+        <Content>
           직업과관련된 두 개의 가치 중에서 자신에게 더 중요한 가치에 표시하세요.
-          가치의 뜻을 잘 모르겠다면 문항 아래에 있는 가치의 설명을 확인해보세요.
-        </p>
+        </Content>
         {questionList.map(item => (
           <QuestionBox
-            key={item.qitemNo}
-            qNum={item.qitemNo}
-            option1={item.answer01}
-            option2={item.answer02}
-            desc1={item.answer03}
-            desc2={item.answer04}
-            score1={item.answerScore01}
-            score2={item.answerScore02}
+            key={item.qNum}
+            qNum={item.qNum}
+            option1={item.option1}
+            option2={item.option2}
+            desc1={item.desc1}
+            desc2={item.desc2}
+            score1={item.score1}
+            score2={item.score2}
             optionClick={optionClick}
-            checked={checked(item.qitemNo)}
+            checked={checked(item.qNum)}
+            div={item}
           />
         ))}
       </Body>
       <Footer>
-        <button type="submit" name="prev" onClick={e => handleClick(e)}>
+        <button type="button" name="prev" onClick={e => handleClick(e)}>
           이전
         </button>
         <button
-          type="submit"
+          type="button"
           name="next"
-          disabled={false}
+          disabled={checkActive()}
           onClick={e => handleClick(e)}
         >
           다음
