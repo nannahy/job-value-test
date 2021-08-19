@@ -1,24 +1,24 @@
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import store from './redux/store';
-import { BasicContainer, InfoContainer, Input, Button } from './components';
-import { setGender, setName } from './redux/action';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { BasicContainer, InfoContainer, Input, Button } from "./components";
+import { setGender, setName } from "./redux/action";
 
 const Start = () => {
-  const [userName, setUserName] = useState('');
-  const [userGender, setUserGender] = useState('');
+  const [userName, setUserName] = useState("");
+  const [userGender, setUserGender] = useState("");
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const name = useSelector(state => state.name);
-  const gender = useSelector(state => state.gender);
+  const name = useSelector((state) => state.name);
+  const gender = useSelector((state) => state.gender);
 
   const handleSubmit = () => {
     dispatch(setName(userName));
     dispatch(setGender(userGender));
-    console.log(name, gender);
-    history.push('/test-example');
+    history.push("/test-example");
   };
 
   return (
@@ -26,7 +26,11 @@ const Start = () => {
       <h1>직업가치관 검사</h1>
       <InfoContainer>
         <p>이름</p>
-        <Input type="text" value={userName} onChange={e => setUserName(e.target.value)} />
+        <Input
+          type="text"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
       </InfoContainer>
       <InfoContainer>
         <p>성별</p>
@@ -35,7 +39,7 @@ const Start = () => {
             type="radio"
             name="gender"
             value="male"
-            onClick={e => setUserGender(e.target.value)}
+            onClick={(e) => setUserGender(e.target.value)}
           />
           남자
         </label>
@@ -44,7 +48,7 @@ const Start = () => {
             type="radio"
             name="gender"
             value="female"
-            onClick={e => setUserGender(e.target.value)}
+            onClick={(e) => setUserGender(e.target.value)}
           />
           여자
         </label>

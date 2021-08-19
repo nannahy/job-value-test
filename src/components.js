@@ -1,4 +1,6 @@
-import styled, { css } from 'styled-components';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/prop-types */
+import styled, { css } from "styled-components";
 
 export const BasicContainer = styled.div`
   display: flex;
@@ -101,7 +103,8 @@ export const Header = styled.div`
 const ProgressStatus = styled.div`
   grid-column: 1 / span 2;
   background: #efefef;
-  width: ${({ progressRate }) => (progressRate ? progressRate.progressRate : 100)}%;
+  width: ${({ progressRate }) =>
+    progressRate ? progressRate.progressRate : 100}%;
   height: 10px;
   border-radius: 5px;
   position: relative;
@@ -112,7 +115,7 @@ const ProgressStatus = styled.div`
   }
 `;
 
-export const ProgressBar = progressRate => {
+export const ProgressBar = (progressRate) => {
   return (
     <>
       <ProgressStatus>
@@ -139,22 +142,20 @@ export const QuestionBox = ({
   optionClick,
   checked,
 }) => {
-  const handleClick = e => {
+  const handleClick = (e) => {
     const idx = e.target.name;
-    const value = e.target.value;
+    const { value } = e.target;
     return optionClick(idx, value);
   };
 
-  const handleCheck = value => {
+  // eslint-disable-next-line consistent-return
+  const handleCheck = (value) => {
     // !checked? false:
     // // answerScore score 같은가? true : false
-    console.log(value, checked);
     if (checked.bool === false) {
-      console.log(false);
       return false;
     }
     if (value === checked.answerScore) {
-      console.log(true);
       return true;
     }
   };
@@ -169,7 +170,7 @@ export const QuestionBox = ({
             className="btn"
             name={qNum}
             value={score1}
-            onClick={e => handleClick(e)}
+            onClick={(e) => handleClick(e)}
             defaultChecked={handleCheck(score1)}
           />
           {option1}
@@ -180,7 +181,7 @@ export const QuestionBox = ({
             className="btn"
             name={qNum}
             value={score2}
-            onClick={e => handleClick(e)}
+            onClick={(e) => handleClick(e)}
             defaultChecked={handleCheck(score2)}
           />
           {option2}
