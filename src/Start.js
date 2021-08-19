@@ -33,7 +33,11 @@ const Start = () => {
     <BasicContainer>
       <h1>직업가치관 검사</h1>
       <UserInfoBox userInfo={userInfo} setUserInfo={setUserInfo} />
-      <Button disabled={!userName || !userGender} onClick={handleSubmit}>
+      <Button
+        type="button"
+        disabled={!userName || !userGender}
+        onClick={handleSubmit}
+      >
         검사하기
       </Button>
     </BasicContainer>

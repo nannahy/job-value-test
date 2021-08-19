@@ -85,19 +85,16 @@ export const Header = styled.div`
   margin-top: 20px;
   align-items: end;
   row-gap: 8px;
+`;
 
-  > * {
-    margin: 0;
-  }
-
-  > h2 {
-    font-size: 20px;
-  }
-
-  > p {
-    font-size: 16px;
-    font-weight: bold;
-  }
+export const Title = styled.h2`
+  margin: 0;
+  font-size: 20px;
+`;
+export const ProgressPercentile = styled.p`
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
 `;
 
 const ProgressStatus = styled.div`
@@ -130,6 +127,8 @@ export const Body = styled.div`
   flex-direction: column;
   margin: 30px 0;
 `;
+
+export const Content = styled.p``;
 
 export const QuestionBox = ({
   qNum,
