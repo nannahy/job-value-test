@@ -13,7 +13,7 @@ import {
   Content,
   Footer,
 } from "./styledComponents";
-import { PageContent } from "./components";
+import { PageContent, PrevNextBtn } from "./components";
 import { addAnswer } from "./redux/action";
 
 const Test = () => {
@@ -60,7 +60,6 @@ const Test = () => {
   };
 
   const checked = qNum => {
-    // answer에 자신의 qNum이 존재하는가? true : false
     if (answer[qNum]) {
       const a = answer[qNum].split("=")[1];
       return { bool: true, answerScore: a };
@@ -68,7 +67,9 @@ const Test = () => {
     return { bool: false, answerScore: null };
   };
 
-  const handleClick2 = e => {
+  const askNum = [currPage * 5 + 1, Math.min(28, currPage * 5 + 5)];
+
+  const handleClick = e => {
     if (e.target.name === "prev") {
       currPage === 0 && history.push("/test-example");
       setCurrPage(curr => curr - 1);
@@ -78,24 +79,21 @@ const Test = () => {
     }
   };
 
-  const askNum = [currPage * 5 + 1, Math.min(28, currPage * 5 + 5)];
-
   const checkActive = () => {
     const checkCounter = Object.keys(answer).filter(
       i => askNum[0] <= i && i <= askNum[1],
     );
-    console.log(checkCounter);
     return checkCounter.length !== page[currPage].length;
   };
 
-  console.log(userAnswer, answer);
+  const percentile = Math.ceil((Object.values(answer).length / 28) * 100);
 
   return (
     <TestContainer>
       <Header>
         <Title>검사진행</Title>
-        <ProgressPercentile>0%</ProgressPercentile>
-        <ProgressBar progressRate="33" />
+        <ProgressPercentile>{percentile}%</ProgressPercentile>
+        <ProgressBar progressRate={percentile} />
       </Header>
       <Body>
         <Content>
@@ -113,17 +111,7 @@ const Test = () => {
         )}
       </Body>
       <Footer>
-        <button type="button" name="prev" onClick={e => handleClick2(e)}>
-          이전
-        </button>
-        <button
-          type="button"
-          name="next"
-          disabled={checkActive()}
-          onClick={e => handleClick2(e)}
-        >
-          다음
-        </button>
+        <PrevNextBtn handleClick={handleClick} checkActive={checkActive} />
       </Footer>
     </TestContainer>
   );

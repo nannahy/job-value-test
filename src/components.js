@@ -146,3 +146,21 @@ export const PageContent = ({ page, optionClick, checked }) => {
   }
   return <div />;
 };
+
+export const PrevNextBtn = ({ handleClick, checkActive }) => {
+  return (
+    <div>
+      <button type="button" name="prev" onClick={e => handleClick(e)}>
+        이전
+      </button>
+      <button
+        type="button"
+        name="next"
+        disabled={checkActive()}
+        onClick={e => handleClick(e)}
+      >
+        다음
+      </button>
+    </div>
+  );
+};
