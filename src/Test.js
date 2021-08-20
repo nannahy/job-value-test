@@ -13,15 +13,15 @@ import {
   Content,
   Footer,
 } from "./styledComponents";
-import { QuestionBox, PageContent } from "./components";
+import { PageContent } from "./components";
 import { addAnswer } from "./redux/action";
 
 const Test = () => {
   const history = useHistory();
-  const [questionList, setQuestionList] = useState([]);
   const [page, setPage] = useState([0]);
   const [currPage, setCurrPage] = useState(0);
   const [userAnswer, setUserAnswer] = useState({});
+
   const answer = useSelector(state => state.answer);
   const dispatch = useDispatch();
 
@@ -43,7 +43,6 @@ const Test = () => {
         score2: item.answerScore02,
       }));
 
-      setQuestionList(qObjList);
       const newPage = [];
       // eslint-disable-next-line no-plusplus
       for (let i = 0; i <= qObjList.length; i += 5) {
@@ -57,7 +56,7 @@ const Test = () => {
     const newAnswer = { ...userAnswer };
     newAnswer[idx] = `B${idx}=${value}`;
     setUserAnswer(newAnswer);
-    dispatch(addAnswer(userAnswer));
+    dispatch(addAnswer(newAnswer));
   };
 
   const checked = qNum => {
@@ -67,19 +66,6 @@ const Test = () => {
       return { bool: true, answerScore: a };
     }
     return { bool: false, answerScore: null };
-  };
-
-  // eslint-disable-next-line no-unused-vars
-  const checkActive = () => {
-    console.log(questionList.length, Object.keys(userAnswer));
-    return questionList.length !== Object.keys(userAnswer).length;
-  };
-
-  const handleClick = e => {
-    // eslint-disable-next-line no-unused-expressions
-    e.target.name === "prev"
-      ? history.push("/test-example")
-      : history.push("./test-finished");
   };
 
   const handleClick2 = e => {
@@ -92,6 +78,18 @@ const Test = () => {
     }
   };
 
+  const askNum = [currPage * 5 + 1, Math.min(28, currPage * 5 + 5)];
+
+  const checkActive = () => {
+    const checkCounter = Object.keys(answer).filter(
+      i => askNum[0] <= i && i <= askNum[1],
+    );
+    console.log(checkCounter);
+    return checkCounter.length !== page[currPage].length;
+  };
+
+  console.log(userAnswer, answer);
+
   return (
     <TestContainer>
       <Header>
@@ -101,17 +99,8 @@ const Test = () => {
       </Header>
       <Body>
         <Content>
-          {/* {page[currPage] === undefined ? (
-            <div />
-          ) : (
-            `(${page[currPage][0].qNum}~${Math.min(
-              page[currPage][0].qNum + 4,
-              28,
-            )}
-          )`
-          )} */}
-          직업과 관련된 두 개의 가치 중에서 자신에게 더 중요한 가치에
-          표시하세요.
+          ({askNum.join("~")}) 직업과 관련된 두 개의 가치 중에서 자신에게 더
+          중요한 가치에 표시하세요.
         </Content>
         {!page ? (
           <div />
@@ -130,7 +119,7 @@ const Test = () => {
         <button
           type="button"
           name="next"
-          // disabled={checkActive()}
+          disabled={checkActive()}
           onClick={e => handleClick2(e)}
         >
           다음
