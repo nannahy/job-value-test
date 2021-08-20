@@ -1,15 +1,10 @@
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-  useHistory,
-} from "react-router-dom";
-import Start from "./Start";
-import TestExample from "./TestExample";
-import Test from "./Test";
-import TestFinished from "./TestFinished";
-import Result from "./Result";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import Start from "./page/StartPage";
+import TestExample from "./page/TestExamplePage";
+import Test from "./page/TestPage";
+import TestFinished from "./page/TestFinishedPage";
+import Result from "./page/ResultPage";
+import NotFound from "./page/NotFoundPage";
 
 const SetPages = () => {
   return (
@@ -32,7 +27,7 @@ const SetPages = () => {
           <Result />
         </Route>
         <Route>
-          <NotFoundPage />
+          <NotFound />
         </Route>
       </Switch>
     </BrowserRouter>
@@ -40,16 +35,3 @@ const SetPages = () => {
 };
 
 export default SetPages;
-
-const NotFoundPage = () => {
-  const history = useHistory();
-
-  return (
-    <div>
-      <h1>페이지를 찾을 수 없습니다</h1>
-      <button type="submit" onClick={() => history.push("/start")}>
-        시작 화면으로 가기
-      </button>
-    </div>
-  );
-};
