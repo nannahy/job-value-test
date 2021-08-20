@@ -3,6 +3,8 @@ import {
   InfoContainer,
   Input,
   DescContainer,
+  Footer,
+  PrevNextBtnBox,
 } from "./styledComponents";
 
 // start
@@ -56,6 +58,7 @@ const Option = ({ qNum, score, option, click, checked }) => {
 
   // eslint-disable-next-line consistent-return
   const handleCheck = score => {
+    window.scrollTo(0, 0);
     if (checked.bool === false) return false;
     if (score === checked.answerScore) return true;
   };
@@ -149,18 +152,18 @@ export const PageContent = ({ page, optionClick, checked }) => {
 
 export const PrevNextBtn = ({ handleClick, checkActive }) => {
   return (
-    <div>
-      <button type="button" name="prev" onClick={e => handleClick(e)}>
+    <Footer>
+      <PrevNextBtnBox type="button" name="prev" onClick={e => handleClick(e)}>
         이전
-      </button>
-      <button
+      </PrevNextBtnBox>
+      <PrevNextBtnBox
         type="button"
         name="next"
         disabled={checkActive()}
         onClick={e => handleClick(e)}
       >
         다음
-      </button>
-    </div>
+      </PrevNextBtnBox>
+    </Footer>
   );
 };

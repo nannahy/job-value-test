@@ -90,7 +90,7 @@ const Test = () => {
 
   return (
     <TestContainer>
-      <Header>
+      <Header className="header">
         <Title>검사진행</Title>
         <ProgressPercentile>{percentile}%</ProgressPercentile>
         <ProgressBar progressRate={percentile} />
@@ -110,9 +110,7 @@ const Test = () => {
           />
         )}
       </Body>
-      <Footer>
-        <PrevNextBtn handleClick={handleClick} checkActive={checkActive} />
-      </Footer>
+      <PrevNextBtn handleClick={handleClick} checkActive={checkActive} />
     </TestContainer>
   );
 };
