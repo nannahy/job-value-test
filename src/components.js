@@ -58,7 +58,7 @@ const Option = ({ qNum, score, option, click, checked }) => {
 
   // eslint-disable-next-line consistent-return
   const handleCheck = score => {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     if (checked.bool === false) return false;
     if (score === checked.answerScore) return true;
   };
