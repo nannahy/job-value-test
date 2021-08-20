@@ -1,10 +1,10 @@
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import Start from "./page/StartPage";
-import TestExample from "./page/TestExamplePage";
-import Test from "./page/TestPage";
-import TestFinished from "./page/TestFinishedPage";
-import Result from "./page/ResultPage";
-import NotFound from "./page/NotFoundPage";
+import Start from "./pages/StartPage";
+import TestExample from "./pages/TestExamplePage";
+import Test from "./pages/TestPage";
+import TestFinished from "./pages/TestFinishedPage";
+import Result from "./pages/ResultPage";
+import NotFound from "./pages/NotFoundPage";
 
 const SetPages = () => {
   return (
