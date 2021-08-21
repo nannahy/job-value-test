@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { BasicContainer, Button } from "../components/style";
-import UserInfoBox from "../components/QuestionBox";
+import UserInfoBox from "../components/UserInfoBox";
 import { setGender, setName } from "../redux/action";
 
 const Start = () => {

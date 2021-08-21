@@ -59,7 +59,7 @@ const Test = () => {
     window.scrollTo(0, 0);
     const lastPage = Math.ceil(questionList.length / 5);
     if (e.target.name === "prev") {
-      currPage === 0 && history.push("/test-example");
+      currPage === 1 && history.push("/test-example");
       setCurrPage(curr => curr - 1);
     } else {
       currPage === lastPage && history.push("./test-finished");

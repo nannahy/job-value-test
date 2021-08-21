@@ -12,10 +12,13 @@ const TestFinished = () => {
   const gender = useSelector(state => state.gender);
   const answer = useSelector(state => state.answer);
 
-  const answerString = Object.values(answer).join(" ");
+  const answerString = Object.values(answer)
+    .map((value, i) => `B${i + 1}=${value}`)
+    .join(" ");
   const timeStamp = new Date().getTime();
 
-  // eslint-disable-next-line no-unused-vars
+  console.log("answer", answerString);
+
   const data = {
     apikey: "91ba033859063edfb432487e1853ddb1",
     qestrnSeq: "6",
@@ -47,7 +50,7 @@ const TestFinished = () => {
     (async function () {
       const response = await axios.post(
         "https://www.career.go.kr/inspct/openapi/test/report",
-        testData,
+        data,
       );
       console.log(response.data);
     })();
