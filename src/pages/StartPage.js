@@ -9,7 +9,7 @@ import { setGender, setName } from "../redux/action";
 const Start = () => {
   const [userName, setUserName] = useState("");
   const [userGender, setUserGender] = useState("");
-  const userInfo = { userName, userGender };
+  const userInfo = { name: userName, gender: userGender };
 
   const history = useHistory();
   const dispatch = useDispatch();

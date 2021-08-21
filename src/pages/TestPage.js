@@ -70,7 +70,6 @@ const Test = () => {
   const checkActive = () => {
     const inThisPage = i => firstQNum <= i && i <= lastQNum;
     const checkCounter = Object.keys(answer).filter(i => inThisPage(i));
-    console.log(lastQNum, checkCounter, pageQuestion.length);
     return checkCounter.length !== pageQuestion.length;
   };
 

@@ -7,7 +7,6 @@ import {
   ProgressPercentile,
   ProgressBar,
   Body,
-  Content,
   Footer,
   Button,
 } from "../components/style";
