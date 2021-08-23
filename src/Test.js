@@ -61,7 +61,6 @@ export const Test = () => {
         console.log('answer', answer)
         return answer
     }
-
     return (
         <TestContainer>
             <Header>
@@ -80,7 +79,6 @@ export const Test = () => {
                     desc2={item.answer04}
                     score1={item.answerScore01}
                     score2={item.answerScore02}
-                    buttonClick={buttonClick}
                 />)}
             </Body>
             <Footer>

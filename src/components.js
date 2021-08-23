@@ -129,6 +129,7 @@ export const QuestionBox = ({qNum, option1, option2, desc1, desc2, score1, score
         const value = e.target.value
         return buttonClick(idx, value)
     }
+
     return (
         <Option>
             <h3>Q{qNum}</h3>
@@ -147,6 +148,8 @@ export const QuestionBox = ({qNum, option1, option2, desc1, desc2, score1, score
                     value={score2} 
                     onClick={(e) => handleClick(e)}
                 />{option2}</label>
+                <label><input type='radio' className='btn' name={qNum} value={score1} />{option1}</label>
+                <label><input type='radio' className='btn' name={qNum} value={score2} />{option2}</label>
             </div>
             <p>*{option1}: {desc1}</p>
             <p>*{option2}: {desc2}</p>
