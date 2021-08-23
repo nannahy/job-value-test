@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { TestContainer, Button } from "../components/style";
+import { Button } from "../styles/style";
+import TestContainer from "../components/TestContainer";
 import axios from "axios";
 import UserInfoTable from "../components/UserInfoTable";
 import JobsTable from "../components/JobsTable";

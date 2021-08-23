@@ -4,14 +4,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addAnswer } from "../redux/Toolkit";
-import {
-  TestContainer,
-  Header,
-  Title,
-  ProgressPercentile,
-  ProgressBar,
-  Body,
-} from "../components/style";
+import { Body } from "../styles/style";
+import Header from "../components/Header";
+import TestContainer from "../components/TestContainer";
 import QuestionBox from "../components/QuestionBox";
 import PrevNextBtn from "../components/PrevNextBtn";
 
@@ -87,11 +82,7 @@ const Test = () => {
 
   return (
     <TestContainer>
-      <Header>
-        <Title>검사진행</Title>
-        <ProgressPercentile>{percentile}%</ProgressPercentile>
-        <ProgressBar progressRate={percentile} />
-      </Header>
+      <Header title="검사진행" percentile={percentile} rate={percentile} />
       <Body>
         <PageContent pageQuestion={pageQuestion} optionClick={optionClick} />
       </Body>

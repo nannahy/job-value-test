@@ -1,19 +1,59 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { fontStyle4, fontStyle5, fontStyle6 } from "../styles/fontStyle";
+import { colors, clicked, btnHover } from "../styles/style";
+import { Label, InputButton } from "../styles/LabelInput";
+
+const OptionContainer = styled.div`
+  box-sizing: border-box;
+  padding: 60px 40px;
+  width: 100%;
+  border-bottom: 0.5px solid ${colors.gray400};
+  display: flex;
+  flex-direction: column;
+`;
+
+const Request = styled.p`
+  ${fontStyle5};
+  color: ${colors.gray600};
+`;
 
 const OptionBox = styled.div`
-  box-sizing: border-box;
-  padding: 20px 40px;
-  width: 100%;
-  background: lightgray;
-  border-radius: 8px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  margin-top: 24px;
+  display: flex;
+`;
+
+const OptionLabel = styled.label`
+  ${Label}
+  height: 60px;
+  margin: 20px 0;
+  line-height: 60px;
+  ${({ defaultChecked }) => defaultChecked && clicked}
+
+  + label {
+    margin-left: 10px;
+  }
+
+  &:hover {
+    ${btnHover}
+  }
+`;
+
+const OptionInput = styled.input`
+  ${InputButton}
 `;
 
 const DescContainer = styled.div`
   grid-column: 1 / span 2;
+`;
+
+const DescWrapper = styled.div`
+  display: flex;
+`;
+
+const Desc = styled.p`
+  ${fontStyle6};
+  color: ${colors.gray600};
+  width: 50%;
+  padding-left: 10px;
 `;
 
 const QuestionBox = ({
@@ -29,31 +69,33 @@ const QuestionBox = ({
   answer,
 }) => {
   return (
-    <OptionBox>
-      <p>
-        {qNum}.{question}
-      </p>
-      <Option
-        qNum={qNum}
-        score={score1}
-        option={option1}
-        onClick={optionClick}
-        answer={answer}
-      />
-      <Option
-        qNum={qNum}
-        score={score2}
-        option={option2}
-        onClick={optionClick}
-        answer={answer}
-      />
+    <OptionContainer>
+      <Request>
+        {qNum}. {question}
+      </Request>
+      <OptionBox>
+        <Option
+          qNum={qNum}
+          score={score1}
+          option={option1}
+          onClick={optionClick}
+          answer={answer}
+        />
+        <Option
+          qNum={qNum}
+          score={score2}
+          option={option2}
+          onClick={optionClick}
+          answer={answer}
+        />
+      </OptionBox>
       <DescBox
         option1={option1}
         option2={option2}
         desc1={desc1}
         desc2={desc2}
       />
-    </OptionBox>
+    </OptionContainer>
   );
 };
 
@@ -68,8 +110,8 @@ const Option = ({ qNum, score, option, onClick, answer }) => {
   };
 
   return (
-    <label htmlFor={score}>
-      <input
+    <OptionLabel htmlFor={score} defaultChecked={isChecked(qNum, score)}>
+      <OptionInput
         type="radio"
         id={score}
         name={qNum}
@@ -78,19 +120,21 @@ const Option = ({ qNum, score, option, onClick, answer }) => {
         defaultChecked={isChecked(qNum, score)}
       />
       {option}
-    </label>
+    </OptionLabel>
   );
 };
 
 const DescBox = ({ option1, option2, desc1, desc2 }) => {
   return (
     <DescContainer>
-      <p>
-        *{option1}: {desc1}
-      </p>
-      <p>
-        *{option2}: {desc2}
-      </p>
+      <DescWrapper>
+        <Desc>
+          *{option1} : {desc1}
+        </Desc>
+        <Desc>
+          *{option2} : {desc2}
+        </Desc>
+      </DescWrapper>
     </DescContainer>
   );
 };

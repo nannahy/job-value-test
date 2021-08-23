@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { BasicContainer, Button } from "../components/style";
-import UserInfoBox from "../components/UserInfoBox";
+import { BasicContainer, Button } from "../styles/style";
+import UserInfoBox, { MainTitle, InfoButton } from "../components/UserInfoBox";
 import { setGender, setName } from "../redux/Toolkit";
 
 const Start = () => {
@@ -32,15 +32,15 @@ const Start = () => {
 
   return (
     <BasicContainer>
-      <h1>직업가치관 검사</h1>
+      <MainTitle>직업가치관검사</MainTitle>
       <UserInfoBox userInfo={userInfo} setUserInfo={setUserInfo} />
-      <Button
+      <InfoButton
         type="button"
         disabled={!userName || !userGender}
         onClick={handleSubmit}
       >
         검사하기
-      </Button>
+      </InfoButton>
     </BasicContainer>
   );
 };

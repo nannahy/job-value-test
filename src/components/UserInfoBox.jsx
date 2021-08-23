@@ -1,34 +1,56 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { colors, Line, clicked, btnHover, ButtonStyle1 } from "../styles/style";
+import { fontStyle1, fontStyle4, fontStyle5 } from "../styles/fontStyle";
+import { Label, InputButton } from "../styles/LabelInput";
 
-const InfoContainer = styled.div`
-  width: 200px;
-  font-size: 14px;
-  display: flex;
-  flex-direction: column;
-
-  + & {
-    margin-top: 20px;
-  }
+export const MainTitle = styled.h1`
+  ${fontStyle1};
+  color: ${colors.gray800};
+  margin-bottom: 30px;
 `;
 
-const Info = styled.p``;
+const InfoContainer = styled.div`
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 25px 0;
+`;
+
+const Info = styled.p`
+  ${fontStyle4};
+  color: ${colors.gray600};
+  margin-bottom: 8px;
+`;
 
 const Input = styled.input`
   box-sizing: border-box;
   height: 40px;
   width: 100%;
-  padding: 4px 8px;
+  padding: 8px 16px;
   border-radius: 8px;
-  border: 1px solid lightgray;
-  font-size: 20px;
+  border: 1px solid ${colors.gray400};
+  ${fontStyle5};
+
+  &:focus {
+    outline: none;
+    ${clicked}
+  }
+
+  &:hover {
+    ${({ disabled }) => !disabled && btnHover}
+  }
 `;
 
-const GenderBox = styled.div`
+const InputBox = styled.div`
   display: flex;
 `;
 
-const Label = styled.label`
-  width: 50%;
+const InfoLabel = styled.label`
+  ${Label};
+`;
+
+const InfoInput = styled.input`
+  ${InputButton};
 `;
 
 const UserInfoBox = ({ userInfo, setUserInfo }) => {
@@ -43,12 +65,21 @@ const UserInfoBox = ({ userInfo, setUserInfo }) => {
         <Info>이름</Info>
         <Name name={userInfo.name} handleChange={handleChange} />
       </InfoContainer>
+      <Line />
       <InfoContainer>
         <Info>성별</Info>
-        <GenderBox>
-          <Gender gender="male" handleChange={handleChange} />
-          <Gender gender="female" handleChange={handleChange} />
-        </GenderBox>
+        <InputBox>
+          <Gender
+            gender="male"
+            handleChange={handleChange}
+            userGender={userInfo.gender}
+          />
+          <Gender
+            gender="female"
+            handleChange={handleChange}
+            userGender={userInfo.gender}
+          />
+        </InputBox>
       </InfoContainer>
     </div>
   );
@@ -58,20 +89,25 @@ const Name = ({ name, handleChange }) => {
   return <Input type="text" value={name} onChange={e => handleChange(e)} />;
 };
 
-const Gender = ({ gender, handleChange }) => {
+const Gender = ({ gender, handleChange, userGender }) => {
   const genders = { male: "남자", female: "여자" };
   return (
-    <Label htmlFor="gender">
-      <input
+    <InfoLabel htmlFor={gender} checked={userGender === gender ? true : false}>
+      <InfoInput
         type="radio"
-        id="gender"
+        id={gender}
         name="gender"
         value={gender}
         onClick={e => handleChange(e)}
+        checked={userGender === gender ? true : false}
       />
       {genders[gender]}
-    </Label>
+    </InfoLabel>
   );
 };
+
+export const InfoButton = styled.button`
+  ${ButtonStyle1};
+`;
 
 export default UserInfoBox;
