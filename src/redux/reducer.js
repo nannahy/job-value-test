@@ -2,7 +2,7 @@ const initState = {
   name: "",
   gender: "",
   answer: {},
-  count: 0,
+  result: {},
 };
 
 const Reducer = (state = initState, action) => {
