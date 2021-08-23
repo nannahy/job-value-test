@@ -1,7 +1,7 @@
 const initState = {
     name: '',
     gender: '',
-    answer: [],
+    answer: {},
     count: 0
 }
 
@@ -18,11 +18,11 @@ const Reducer = (state = initState, action) => {
                 gender: action.gender
             }
         case "ADD_ANSWER":
-            const newArr = [...state.answer, action.answer];
             return {
                 ...state,
-                answer: newArr 
-            }
+                answer: {...state.answer, ...action.answer}
+            } 
+        
         case "CHECK_PROGRESS":
             return {
                 ...state,
