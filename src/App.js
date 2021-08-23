@@ -1,7 +1,7 @@
 import "./App.css";
 import { Provider } from "react-redux";
 import SetPages from "./SetPages";
-import store from "./redux/store";
+import store from "./redux/Toolkit";
 
 function App() {
   return (

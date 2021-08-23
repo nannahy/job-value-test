@@ -39,37 +39,6 @@ export const Button = styled.button`
     `}
 `;
 
-export const InfoContainer = styled.div`
-  width: 200px;
-  font-size: 14px;
-
-  + div {
-    margin-top: 20px;
-  }
-
-  > p {
-    margin: 5px;
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  > label {
-    display: inline-block;
-    font-size: 20px;
-    width: 100px;
-  }
-`;
-
-export const Input = styled.input`
-  box-sizing: border-box;
-  height: 40px;
-  width: 100%;
-  padding: 4px 8px;
-  border-radius: 8px;
-  border: 1px solid lightgray;
-  font-size: 20px;
-`;
-
 /* test components */
 
 export const TestContainer = styled.div`

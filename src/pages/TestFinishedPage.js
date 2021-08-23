@@ -95,7 +95,7 @@ const TestFinished = () => {
     const response = await axios.get(
       `https://www.career.go.kr/inspct/api/psycho/report?seq=${seqKey}`,
     );
-    const result = await editResult(response.data);
+    const result = editResult(response.data);
     return result;
   };
 
@@ -103,7 +103,7 @@ const TestFinished = () => {
     try {
       const response = await axios.post(
         "https://www.career.go.kr/inspct/openapi/test/report",
-        testData,
+        data,
       );
       const seqKey = response.data.RESULT.url.split("=")[1];
       const result = await getResult(seqKey);
@@ -114,7 +114,10 @@ const TestFinished = () => {
   };
 
   useEffect(() => {
-    fetch().then(setUserResult);
+    fetch().then(result => {
+      setUserResult(result);
+      // dispatch(getResult(result));
+    });
   }, []);
 
   // useEffect(() => {

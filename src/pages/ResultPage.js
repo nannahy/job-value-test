@@ -4,26 +4,30 @@ import { TestContainer, Button } from "../components/style";
 import axios from "axios";
 import UserInfoTable from "../components/UserInfoTable";
 import JobsTable from "../components/JobsTable";
+import { useSelector } from "react-redux";
 
 const Result = () => {
+  const state = useSelector(state => state);
+
+  console.log(state);
   const history = useHistory();
   const [jobEdu, setJobEdu] = useState();
   const [jobMajor, setJobMajor] = useState();
   const [userResult, setUserResult] = useState({
     date: "2021-08-23",
     gender: "남자",
-    highScore: ["1", "3"],
-    lowScore: ["5", "8"],
+    highScore: ["2", "3"],
+    lowScore: ["5", "6"],
     name: "Elice",
     result: [
+      ["7", "6"],
+      ["8", "5"],
       ["1", "4"],
-      ["3", "4"],
-      ["6", "4"],
-      ["7", "4"],
+      ["4", "4"],
       ["2", "3"],
-      ["4", "3"],
-      ["5", "3"],
-      ["8", "3"],
+      ["3", "3"],
+      ["5", "2"],
+      ["6", "1"],
     ],
   });
 
@@ -74,7 +78,7 @@ const Result = () => {
   console.log(userResult, jobEdu, jobMajor);
   const editJobs = (jobsEdu, jobsMajor) => {
     const editEduJobs = jobsEdu => {
-      const eduIndex = { 2: "고졸", 4: "대졸", 5: "대학원졸" };
+      const eduIndex = { 2: "고졸", 3: "전문대졸", 4: "대졸", 5: "대학원졸" };
       const jobEdu = {};
       const addObj = (Obj, item) => {
         const idx = eduIndex[item[2]];
@@ -101,8 +105,8 @@ const Result = () => {
         const zero = majorIndex[0];
         const idx = majorIndex[item[2]];
         const value = item[1];
-        Obj[zero] ? (Obj[zero] = [...Obj[zero], value]) : (Obj[zero] = [value]);
         Obj[idx] ? (Obj[idx] = [...Obj[idx], value]) : (Obj[idx] = [value]);
+        idx !== "계열무관" && (Obj["계열무관"] = [...Obj["계열무관"], value]);
       };
       jobsMajor.forEach(item => addObj(jobMajor, item));
       return jobMajor;
