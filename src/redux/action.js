@@ -13,7 +13,7 @@ export const addAnswer = answer => ({
   answer,
 });
 
-export const checkProgress = () => ({
-  type: "CHECK_PROGRESS",
-  count: 1,
+export const getResult = result => ({
+  type: "GET_RESULT",
+  result,
 });

@@ -55,15 +55,23 @@ const Test = () => {
     dispatch(addAnswer(newAnswer));
   };
 
+  const PrevClick = () => {
+    currPage === 1 && history.push("/test-example");
+    setCurrPage(curr => curr - 1);
+  };
+
+  const NextClick = () => {
+    const lastPage = Math.ceil(questionList.length / 5);
+    currPage === lastPage && history.push("./test-finished");
+    setCurrPage(curr => curr + 1);
+  };
+
   const handleBtnClick = e => {
     window.scrollTo(0, 0);
-    const lastPage = Math.ceil(questionList.length / 5);
     if (e.target.name === "prev") {
-      currPage === 1 && history.push("/test-example");
-      setCurrPage(curr => curr - 1);
+      PrevClick();
     } else {
-      currPage === lastPage && history.push("./test-finished");
-      setCurrPage(curr => curr + 1);
+      NextClick();
     }
   };
 
@@ -73,7 +81,9 @@ const Test = () => {
     return checkCounter.length !== pageQuestion.length;
   };
 
-  const percentile = Math.ceil((Object.values(answer).length / 28) * 100);
+  const percentile = Math.ceil(
+    (Object.values(answer).length / questionList.length) * 100,
+  );
 
   return (
     <TestContainer>

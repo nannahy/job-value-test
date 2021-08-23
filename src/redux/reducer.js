@@ -23,10 +23,9 @@ const Reducer = (state = initState, action) => {
         answer: { ...state.answer, ...action.answer },
       };
 
-    case "CHECK_PROGRESS":
+    case "GET_RESULT":
       return {
-        ...state,
-        count: state.count + action.count,
+        result: action.result,
       };
     default:
       return state;
