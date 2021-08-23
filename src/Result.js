@@ -1,15 +1,15 @@
-import { useHistory } from "react-router";
-import { TestContainer, Button } from "./components";
+import { useHistory } from "react-router-dom";
+import { TestContainer, Button } from "./styledComponents";
 
 const Result = () => {
-    const history = useHistory();
+  const history = useHistory();
 
-    return (
-        <TestContainer>
-            <h1>직업가치관검사 결과표</h1>
-            <Button onClick={() => history.push('/start')}>다시 검사하기</Button>
-        </TestContainer>
-    )
-}
+  return (
+    <TestContainer>
+      <h1>직업가치관검사 결과표</h1>
+      <Button onClick={() => history.push("/start")}>다시 검사하기</Button>
+    </TestContainer>
+  );
+};
 
 export default Result;
