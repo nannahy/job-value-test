@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { fontStyle2, fontStyle3, fontStyle4 } from "../styles/fontStyle";
-import { boxStyle1, colors } from "../styles/style";
+import { fontStyle4 } from "../styles/fontStyle";
+import { colors, TitleStyle1 } from "../styles/style";
 
 const HeaderBox = styled.div`
   display: grid;
@@ -13,8 +13,8 @@ const HeaderBox = styled.div`
   background: white;
 `;
 
-const Title = styled.h2`
-  ${fontStyle2};
+export const Title = styled.h2`
+  ${TitleStyle1};
   color: ${colors.gray600};
 `;
 const ProgressPercentile = styled.p`

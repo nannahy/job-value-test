@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { Footer, Button, ButtonStyle1 } from "../styles/style";
+import { Footer, ButtonStyle1 } from "../styles/style";
 
 const PrevNextBtnBox = styled.button`
   ${ButtonStyle1};
   margin: 0;
-  width: 200px;
+  width: 180px;
 `;
 
 const PrevNextBtn = ({ handleClick, checkActive }) => {
@@ -26,7 +26,3 @@ const PrevNextBtn = ({ handleClick, checkActive }) => {
 };
 
 export default PrevNextBtn;
-
-export const TestStartButton = styled.button`
-  ${ButtonStyle1};
-`;

@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Button } from "../styles/style";
-import TestContainer from "../components/TestContainer";
+import { BasicContainer2 } from "../styles/style";
 import axios from "axios";
-import UserInfoTable from "../components/UserInfoTable";
-import JobsTable from "../components/JobsTable";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { resetInputs } from "../redux/Toolkit";
+import ResultTable, { Title } from "../components/ResultTable";
+import Button from "../components/Button";
 
 const Result = () => {
   const state = useSelector(state => state);
+  const dispatch = useDispatch();
 
   console.log(state);
   const history = useHistory();
@@ -103,7 +104,6 @@ const Result = () => {
       };
       const jobMajor = {};
       const addObj = (Obj, item) => {
-        const zero = majorIndex[0];
         const idx = majorIndex[item[2]];
         const value = item[1];
         Obj[idx] ? (Obj[idx] = [...Obj[idx], value]) : (Obj[idx] = [value]);
@@ -119,18 +119,23 @@ const Result = () => {
     return { edu, major };
   };
 
+  const handleClick = () => {
+    dispatch(resetInputs());
+    history.push("/start");
+  };
+
   return (
-    <TestContainer>
-      <h1>직업가치관검사 결과표</h1>
+    <BasicContainer2>
+      <Title>직업가치관검사 결과표</Title>
       {jobEdu && jobMajor && (
-        <>
-          <UserInfoTable data={userResult} />
-          <JobsTable data={jobEdu} />
-          <JobsTable data={jobMajor} />
-        </>
+        <ResultTable
+          userResult={userResult}
+          jobEdu={jobEdu}
+          jobMajor={jobMajor}
+        />
       )}
-      <Button onClick={() => history.push("/start")}>다시 검사하기</Button>
-    </TestContainer>
+      <Button onClick={() => handleClick()}>다시 검사하기</Button>
+    </BasicContainer2>
   );
 };
 

@@ -2,7 +2,9 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BasicContainer, Button } from "../styles/style";
+import { BasicContainer } from "../styles/style";
+import Button from "../components/Button";
+import TestFinishedContent from "../components/testFinishedContent";
 
 const TestFinished = () => {
   const history = useHistory();
@@ -11,7 +13,9 @@ const TestFinished = () => {
 
   const [userResult, setUserResult] = useState();
 
-  const answerString = Object.values(state.answer)
+  const realAnswer = Object.values(state.answer).slice(1);
+
+  const answerString = realAnswer
     .map((value, i) => `B${i + 1}=${value}`)
     .join(" ");
   const timeStamp = new Date().getTime();
@@ -120,32 +124,9 @@ const TestFinished = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(getResult(userResult));
-  // }, [userResult]);
-
-  console.log("check", userResult);
-
   return (
     <BasicContainer>
-      <h2>검사가 완료되었습니다.</h2>
-      <p>
-        검사결과는 여러분이 직업을 선택할 때 상대적으로 어떠한 가치를 중요하게
-        생각하는지를 알려주고,
-        <br />
-        중요 가치를 충족시켜줄 수 있는 직업에 대해 생각해 볼 기회를 제공합니다.
-      </p>
-      {userResult && (
-        <p>
-          직업생활과 관련하여 {userResult.name}님은&nbsp;
-          {jobValue[userResult.highScore[0]]}(와)과&nbsp;
-          {jobValue[userResult.highScore[1]]}(을)를 가장 중요하게 생각합니다.
-          <br />
-          반면에 {jobValue[userResult.lowScore[0]]},&nbsp;
-          {jobValue[userResult.lowScore[1]]}(은)는 상대적으로 덜 중요하게
-          생각합니다.
-        </p>
-      )}
+      <TestFinishedContent userResult={userResult} jobValue={jobValue} />
       <Button onClick={() => history.push("/result")}>결과보기</Button>
     </BasicContainer>
   );

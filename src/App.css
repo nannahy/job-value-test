@@ -4,7 +4,6 @@
   display: flex;
   justify-content: center;
   width: 990px;
-  height: min(100vh);
   margin: auto;
   font-family: "Noto Sans KR", sans-serif;
 }

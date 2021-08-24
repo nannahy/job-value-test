@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import { css } from "styled-components";
 
 export const fontStyle1 = css`
   font-size: 36px;
@@ -11,8 +11,8 @@ export const fontStyle2 = css`
 `;
 
 export const fontStyle3 = css`
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: 600;
+  font-size: 18px;
 `;
 
 export const fontStyle4 = css`

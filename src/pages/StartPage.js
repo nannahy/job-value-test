@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-expressions */
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { BasicContainer, Button } from "../styles/style";
-import UserInfoBox, { MainTitle, InfoButton } from "../components/UserInfoBox";
+import { BasicContainer } from "../styles/style";
+import UserInfoBox, { MainTitle } from "../components/UserInfoBox";
+import Button from "../components/Button";
 import { setGender, setName } from "../redux/Toolkit";
 
 const Start = () => {
@@ -34,13 +34,13 @@ const Start = () => {
     <BasicContainer>
       <MainTitle>직업가치관검사</MainTitle>
       <UserInfoBox userInfo={userInfo} setUserInfo={setUserInfo} />
-      <InfoButton
+      <Button
         type="button"
         disabled={!userName || !userGender}
         onClick={handleSubmit}
       >
         검사하기
-      </InfoButton>
+      </Button>
     </BasicContainer>
   );
 };

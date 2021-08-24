@@ -4,6 +4,7 @@ export const setName = createAction("SET_NAME");
 export const setGender = createAction("SET_GENDER");
 export const addAnswer = createAction("ADD_ANSWER");
 export const getResult = createAction("GET_RESULT");
+export const resetInputs = createAction("RESET_INPUTS");
 
 const initState = {
   name: "",
@@ -24,6 +25,9 @@ const Reducer = createReducer(initState, builder => {
   });
   builder.addCase(getResult, (state, action) => {
     state.result = action.payload;
+  });
+  builder.addCase(resetInputs, (state, action) => {
+    return initState;
   });
 });
 

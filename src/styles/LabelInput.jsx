@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import { css } from "styled-components";
 import { colors, clicked, btnHover } from "./style";
 import { fontStyle4 } from "./fontStyle";
 

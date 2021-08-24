@@ -76,9 +76,9 @@ const Test = () => {
     return checkCounter.length !== pageQuestion.length;
   };
 
-  const percentile = Math.ceil(
-    (Object.values(answer).length / questionList.length) * 100,
-  );
+  const realAnswer = Object.values(answer).slice(1);
+
+  const percentile = Math.ceil((realAnswer.length / questionList.length) * 100);
 
   return (
     <TestContainer>

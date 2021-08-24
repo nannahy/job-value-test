@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { fontStyle3 } from "./fontStyle";
+import { fontStyle3, fontStyle2 } from "./fontStyle";
 
 export const colors = {
   blue50: "#E1F5FE",
@@ -44,28 +44,37 @@ export const BasicContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+`;
+
+export const BasicContainer2 = styled.div`
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 0;
+`;
+
+export const TitleStyle1 = css`
+  ${fontStyle2};
+  color: ${colors.gray800};
 `;
 
 export const ButtonStyle1 = css`
   height: 60px;
   padding: 0 40px;
-  margin-top: 30px;
   ${fontStyle3};
   border: 1px solid ${colors.blue700};
   border-radius: 8px;
   color: ${colors.blue700};
   background: white;
-  font-weight: 600;
 
   &:hover {
     ${({ disabled }) => !disabled && btnHover}
   }
 
   ${({ disabled }) => disabled && disable}
-`;
-
-export const Button = styled.button`
-  ${ButtonStyle1};
 `;
 
 /* test components */

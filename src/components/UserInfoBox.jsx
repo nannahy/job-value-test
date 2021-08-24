@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { colors, Line, clicked, btnHover, ButtonStyle1 } from "../styles/style";
 import { fontStyle1, fontStyle4, fontStyle5 } from "../styles/fontStyle";
 import { Label, InputButton } from "../styles/LabelInput";
@@ -6,6 +6,10 @@ import { Label, InputButton } from "../styles/LabelInput";
 export const MainTitle = styled.h1`
   ${fontStyle1};
   color: ${colors.gray800};
+  margin-bottom: 30px;
+`;
+
+const InfoWrapper = styled.div`
   margin-bottom: 30px;
 `;
 
@@ -60,7 +64,7 @@ const UserInfoBox = ({ userInfo, setUserInfo }) => {
   };
 
   return (
-    <div>
+    <InfoWrapper>
       <InfoContainer>
         <Info>이름</Info>
         <Name name={userInfo.name} handleChange={handleChange} />
@@ -81,7 +85,7 @@ const UserInfoBox = ({ userInfo, setUserInfo }) => {
           />
         </InputBox>
       </InfoContainer>
-    </div>
+    </InfoWrapper>
   );
 };
 
@@ -99,7 +103,6 @@ const Gender = ({ gender, handleChange, userGender }) => {
         name="gender"
         value={gender}
         onClick={e => handleChange(e)}
-        checked={userGender === gender ? true : false}
       />
       {genders[gender]}
     </InfoLabel>

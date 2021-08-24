@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
-import { fontStyle4, fontStyle5, fontStyle6 } from "../styles/fontStyle";
+import styled from "styled-components";
+import { fontStyle5, fontStyle6 } from "../styles/fontStyle";
 import { colors, clicked, btnHover } from "../styles/style";
 import { Label, InputButton } from "../styles/LabelInput";
 
@@ -26,14 +26,14 @@ const OptionLabel = styled.label`
   height: 60px;
   margin: 20px 0;
   line-height: 60px;
-  ${({ defaultChecked }) => defaultChecked && clicked}
+  ${props => props.defaultChecked && clicked};
 
   + label {
     margin-left: 10px;
   }
 
   &:hover {
-    ${btnHover}
+    ${btnHover};
   }
 `;
 
@@ -71,7 +71,7 @@ const QuestionBox = ({
   return (
     <OptionContainer>
       <Request>
-        {qNum}. {question}
+        Q{qNum}. {question}
       </Request>
       <OptionBox>
         <Option
