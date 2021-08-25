@@ -29,11 +29,18 @@ export const Header = styled.div`
   background: white;
 `;
 
+export const BasicHeader = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 50px;
+`;
+
 export const Body = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 50px;
+  padding-top: 40px;
 `;
 
 export const Footer = styled.div`
@@ -44,4 +51,11 @@ export const Footer = styled.div`
   position: sticky;
   bottom: 0;
   background: white;
+`;
+
+export const BasicFooter = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 60px 0;
 `;

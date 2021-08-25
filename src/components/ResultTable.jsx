@@ -1,46 +1,14 @@
 import styled, { css } from "styled-components";
 import { colors } from "../styles/style";
-import {
-  boxFont1,
-  fontStyle1,
-  fontStyle2,
-  fontStyle3,
-  fontStyle4,
-  fontStyle5,
-} from "../styles/fontStyle";
-
-const borderStyle = css`
-  /* border-top: 1px solid ${colors.blue700};
-  border-bottom: 1px solid ${colors.blue700}; */
-  border-left: 8px solid white;
-  border-right: 8px solid white;
-`;
+import { boxFont1, fontStyle4, fontStyle5 } from "../styles/fontStyle";
+import { Title3 } from "./Fonts";
+import { Body } from "./Containers";
 
 const borderStyleLight = css`
-  border-top: 0.5px solid ${colors.gray400};
-  border-bottom: 0.5px solid ${colors.gray400};
+  border-top: 0.5px solid ${colors.gray300};
+  border-bottom: 0.5px solid ${colors.gray300};
   border-left: 8px solid white;
   border-right: 8px solid white;
-`;
-
-export const Title = styled.h2`
-  ${fontStyle1};
-  border-bottom: 0.5px solid ${colors.gray400};
-  padding: 8px 0;
-`;
-
-const TableContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 30px;
-`;
-
-const ResultTitle = styled.p`
-  ${fontStyle2};
-  color: ${colors.gray800};
-  width: 100%;
-  padding: 10px 0;
 `;
 
 const TableTitle = styled.p`
@@ -49,14 +17,37 @@ const TableTitle = styled.p`
   padding: 15px 0;
   text-align: center;
   background: ${colors.gray100};
-  border-radius: 8px;
-  margin-top: 10px;
+  margin-top: 16px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+`;
+
+const InfoTable = styled.table`
+  width: 100%;
+  border-spacing: 8px 0;
+  margin-bottom: 30px;
+`;
+
+const InfoTh = styled.th`
+  padding: 10px 0;
+  background: ${colors.gray100};
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+`;
+
+const InfoTd = styled.td`
+  ${borderStyleLight};
+  border-top: none;
+  ${fontStyle4};
+  color: ${colors.gray600};
+  padding: 10px 20px;
+  text-align: center;
 `;
 
 const Table = styled.table`
   width: 100%;
-  margin: 5px 0 40px 0;
   border-collapse: collapse;
+  margin-bottom: 30px;
 `;
 
 const Thead = styled.thead`
@@ -64,18 +55,11 @@ const Thead = styled.thead`
   color: ${colors.gray800};
 `;
 
-const InfoTh = styled.th`
-  ${borderStyle};
-  border-top: 0.5px solid ${colors.gray400};
-  padding: 10px 0;
-`;
-
 const Th = styled.th`
-  ${borderStyle};
   padding: 10px 0;
 `;
 
-const ItemTd = styled.td`
+const KeyTd = styled.td`
   ${borderStyleLight};
   ${fontStyle4};
   text-align: center;
@@ -83,15 +67,7 @@ const ItemTd = styled.td`
   width: 150px;
 `;
 
-const InfoTd = styled.td`
-  ${borderStyleLight};
-  ${fontStyle4};
-  color: ${colors.gray600};
-  padding: 10px 20px;
-  text-align: center;
-`;
-
-const ContentTd = styled.td`
+const ValueTd = styled.td`
   ${borderStyleLight};
   ${fontStyle5};
   color: ${colors.gray600};
@@ -100,21 +76,21 @@ const ContentTd = styled.td`
 
 const ResultTable = ({ result, jobEdu, jobMajor }) => {
   return (
-    <TableContainer>
+    <Body>
       <UserInfoTable data={result} />
-      <ResultTitle>직업가치관 결과</ResultTitle>
-      <ResultTitle>가치관과 관련이 높은 직업</ResultTitle>
+      <Title3>직업가치관 결과</Title3>
+      <Title3>가치관과 관련이 높은 직업</Title3>
       <TableTitle>종사자 평균 학력별</TableTitle>
       <JobsTable data={jobEdu} />
       <TableTitle>종사자 평균 전공별</TableTitle>
       <JobsTable data={jobMajor} />
-    </TableContainer>
+    </Body>
   );
 };
 
 const UserInfoTable = ({ data }) => {
   return (
-    <Table>
+    <InfoTable>
       <Thead>
         <InfoTh>이름</InfoTh>
         <InfoTh>성별</InfoTh>
@@ -127,23 +103,22 @@ const UserInfoTable = ({ data }) => {
           <InfoTd>{data.date}</InfoTd>
         </tr>
       </tbody>
-    </Table>
+    </InfoTable>
   );
 };
 
 const JobsTable = ({ data }) => {
-  const makeList = item => {
-    const content = data[item].join(", ");
+  const makeList = key => {
+    const values = data[key].join(", ");
     return (
-      <tr key={item}>
-        <ItemTd>{item}</ItemTd>
-        <ContentTd>{content}</ContentTd>
+      <tr key={key}>
+        <KeyTd>{key}</KeyTd>
+        <ValueTd>{values}</ValueTd>
       </tr>
     );
   };
-  const jobList = Object.keys(data).map(item => makeList(item));
+  const jobList = Object.keys(data).map(key => makeList(key));
 
-  // objList.forEach(item => )
   return (
     <Table>
       <Thead>

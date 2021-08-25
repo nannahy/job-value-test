@@ -6,7 +6,11 @@ import { resetInputs } from "../redux/Toolkit";
 import ResultTable from "../components/ResultTable";
 import Button from "../components/Buttons";
 import { TitleH1 } from "../components/Fonts";
-import { BasicContainer1 } from "../components/Containers";
+import {
+  BasicContainer1,
+  BasicHeader,
+  BasicFooter,
+} from "../components/Containers";
 
 const eduIndex = {
   1: "중졸",
@@ -97,11 +101,15 @@ const Result = () => {
 
   return (
     <BasicContainer1>
-      <TitleH1>직업가치관검사 결과표</TitleH1>
+      <BasicHeader>
+        <TitleH1>직업가치관검사 결과표</TitleH1>
+      </BasicHeader>
       {jobEdu && jobMajor && (
         <ResultTable result={result} jobEdu={jobEdu} jobMajor={jobMajor} />
       )}
-      <Button onClick={() => handleClick()}>다시 검사하기</Button>
+      <BasicFooter>
+        <Button onClick={() => handleClick()}>다시 검사하기</Button>
+      </BasicFooter>
     </BasicContainer1>
   );
 };
