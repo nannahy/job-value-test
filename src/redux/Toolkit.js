@@ -3,14 +3,14 @@ import { createReducer, configureStore, createAction } from "@reduxjs/toolkit";
 export const setName = createAction("SET_NAME");
 export const setGender = createAction("SET_GENDER");
 export const addAnswer = createAction("ADD_ANSWER");
-export const getResult = createAction("GET_RESULT");
+export const setResult = createAction("SET_RESULT");
 export const resetInputs = createAction("RESET_INPUTS");
 
 const initState = {
   name: "",
   gender: "",
   answer: {},
-  result: {},
+  result: null,
 };
 
 const Reducer = createReducer(initState, builder => {
@@ -23,7 +23,7 @@ const Reducer = createReducer(initState, builder => {
   builder.addCase(addAnswer, (state, action) => {
     state.answer = { ...state.answer, ...action.payload };
   });
-  builder.addCase(getResult, (state, action) => {
+  builder.addCase(setResult, (state, action) => {
     state.result = action.payload;
   });
   builder.addCase(resetInputs, (state, action) => {

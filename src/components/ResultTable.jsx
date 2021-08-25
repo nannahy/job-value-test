@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
-import { colors, TitleStyle1 } from "../styles/style";
+import { colors } from "../styles/style";
 import {
+  boxFont1,
   fontStyle1,
   fontStyle2,
   fontStyle3,
@@ -23,7 +24,6 @@ const borderStyleLight = css`
 `;
 
 export const Title = styled.h2`
-  ${TitleStyle1};
   ${fontStyle1};
   border-bottom: 0.5px solid ${colors.gray400};
   padding: 8px 0;
@@ -44,8 +44,7 @@ const ResultTitle = styled.p`
 `;
 
 const TableTitle = styled.p`
-  ${fontStyle3};
-  color: ${colors.gray800};
+  ${boxFont1};
   width: 100%;
   padding: 15px 0;
   text-align: center;
@@ -99,10 +98,10 @@ const ContentTd = styled.td`
   padding: 10px 20px;
 `;
 
-const ResultTable = ({ userResult, jobEdu, jobMajor }) => {
+const ResultTable = ({ result, jobEdu, jobMajor }) => {
   return (
     <TableContainer>
-      <UserInfoTable data={userResult} />
+      <UserInfoTable data={result} />
       <ResultTitle>직업가치관 결과</ResultTitle>
       <ResultTitle>가치관과 관련이 높은 직업</ResultTitle>
       <TableTitle>종사자 평균 학력별</TableTitle>

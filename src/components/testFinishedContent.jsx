@@ -1,19 +1,16 @@
 import styled from "styled-components";
 import { fontStyle4, fontStyle5 } from "../styles/fontStyle";
-import { colors, TitleStyle1 } from "../styles/style";
+import { colors } from "../styles/style";
+import { Title3 } from "./Fonts";
 
-export const Title = styled.h2`
-  ${TitleStyle1}
-  margin-bottom: 24px;
-`;
-
-const Desc = styled.p`
+const BodyText = styled.p`
   ${fontStyle5};
   color: ${colors.gray800};
+  margin: 32px 0 56px 0;
   text-align: center;
-  margin-bottom: 14px;
-  + p {
-    margin-bottom: 40px;
+
+  > div {
+    height: 14px;
   }
 `;
 
@@ -31,29 +28,26 @@ const Bold = styled.span`
   font-weight: 600;
 `;
 
-const TestFinishedContent = ({ userResult, jobValue }) => {
+const TestFinishedContent = ({ name, highScoreValue, lowScoreValue }) => {
   return (
     <>
-      <Title>검사가 완료되었습니다.</Title>
-      <Desc>
+      <Title3>검사가 완료되었습니다.</Title3>
+      <BodyText>
         검사결과는 여러분이 직업을 선택할 때 상대적으로 어떠한 가치를 중요하게
         생각하는지를 알려주고,
         <br />
         중요 가치를 충족시켜줄 수 있는 직업에 대해 생각해 볼 기회를 제공합니다.
-      </Desc>
-      {userResult && (
-        <Desc>
-          직업생활과 관련하여 <Bold>{userResult.name}</Bold>님은&nbsp;
-          <HighLight>{jobValue[userResult.highScore[0]]}</HighLight>(와)과&nbsp;
-          <HighLight>{jobValue[userResult.highScore[1]]}</HighLight>(을)를 가장
-          중요하게 생각합니다.
-          <br />
-          반면에 <LowLight>{jobValue[userResult.lowScore[0]]}</LowLight>
-          ,&nbsp;
-          <LowLight>{jobValue[userResult.lowScore[1]]}</LowLight>(은)는
-          상대적으로 덜 중요하게 생각합니다.
-        </Desc>
-      )}
+        <div />
+        직업생활과 관련하여 <Bold>{name}</Bold>님은&nbsp;
+        <HighLight>{highScoreValue[0]}</HighLight>(와)과&nbsp;
+        <HighLight>{highScoreValue[1]}</HighLight>(을)를 가장 중요하게
+        생각합니다.
+        <br />
+        반면에 <LowLight>{lowScoreValue[0]}</LowLight>
+        ,&nbsp;
+        <LowLight>{lowScoreValue[1]}</LowLight>(은)는 상대적으로 덜 중요하게
+        생각합니다.
+      </BodyText>
     </>
   );
 };

@@ -1,9 +1,8 @@
 import { useHistory } from "react-router-dom";
-import { Body, Footer } from "../styles/style";
-import TestContainer from "../components/TestContainer";
-import Header from "../components/Header";
+import { BasicContainer1, Body } from "../components/Containers";
+import TestHeader from "../components/TestHeader";
 import QuestionBox from "../components/QuestionBox";
-import Button from "../components/Button";
+import Button from "../components/Buttons";
 import { useDispatch, useSelector } from "react-redux";
 import { addAnswer } from "../redux/Toolkit";
 
@@ -21,15 +20,9 @@ const TestExample = () => {
     return answer[0] ? false : true;
   };
 
-  console.log(answer);
-
   return (
-    <TestContainer>
-      <Header
-        title="검사예시"
-        percentile={answer[0] ? 100 : 0}
-        rate={answer[0] ? 100 : 0}
-      />
+    <BasicContainer1>
+      <TestHeader title="검사예시" percentile={answer[0] ? 100 : 0} />
       <Body>
         <QuestionBox
           key="0"
@@ -46,16 +39,14 @@ const TestExample = () => {
           가치의 뜻을 잘 모르겠다면 문항 아래에 있는 가치의 설명을 확인해보세요."
         />
       </Body>
-      <Footer>
-        <Button
-          type="button"
-          onClick={() => history.push("/test")}
-          disabled={checkActiveExam()}
-        >
-          검사하기
-        </Button>
-      </Footer>
-    </TestContainer>
+      <Button
+        type="button"
+        onClick={() => history.push("/test")}
+        disabled={checkActiveExam()}
+      >
+        검사하기
+      </Button>
+    </BasicContainer1>
   );
 };
 

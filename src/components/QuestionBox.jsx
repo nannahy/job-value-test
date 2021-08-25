@@ -1,51 +1,30 @@
 import styled from "styled-components";
-import { fontStyle5, fontStyle6 } from "../styles/fontStyle";
-import { colors, clicked, btnHover } from "../styles/style";
-import { Label, InputButton } from "../styles/LabelInput";
+import { fontStyle6 } from "../styles/fontStyle";
+import { colors } from "../styles/style";
+import { testLabel } from "../styles/labelStyle";
+import { BodyP2 } from "./Fonts";
 
 const OptionContainer = styled.div`
   box-sizing: border-box;
-  padding: 60px 40px;
+  padding: 0 20px 50px 20px;
   width: 100%;
   border-bottom: 0.5px solid ${colors.gray400};
   display: flex;
   flex-direction: column;
-`;
-
-const Request = styled.p`
-  ${fontStyle5};
-  color: ${colors.gray600};
+  margin-bottom: 50px;
 `;
 
 const OptionBox = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
 `;
 
 const OptionLabel = styled.label`
-  ${Label}
-  height: 60px;
-  margin: 20px 0;
-  line-height: 60px;
-  ${props => props.defaultChecked && clicked};
-
-  + label {
-    margin-left: 10px;
-  }
-
-  &:hover {
-    ${btnHover};
-  }
-`;
-
-const OptionInput = styled.input`
-  ${InputButton}
+  ${testLabel}
 `;
 
 const DescContainer = styled.div`
-  grid-column: 1 / span 2;
-`;
-
-const DescWrapper = styled.div`
   display: flex;
 `;
 
@@ -70,9 +49,9 @@ const QuestionBox = ({
 }) => {
   return (
     <OptionContainer>
-      <Request>
+      <BodyP2>
         Q{qNum}. {question}
-      </Request>
+      </BodyP2>
       <OptionBox>
         <Option
           qNum={qNum}
@@ -106,12 +85,12 @@ const Option = ({ qNum, score, option, onClick, answer }) => {
   };
 
   const isChecked = (name, value) => {
-    return answer[name] === value ? true : false;
+    return !answer ? false : answer[name] === value ? true : false;
   };
 
   return (
     <OptionLabel htmlFor={score} defaultChecked={isChecked(qNum, score)}>
-      <OptionInput
+      <input
         type="radio"
         id={score}
         name={qNum}
@@ -127,14 +106,12 @@ const Option = ({ qNum, score, option, onClick, answer }) => {
 const DescBox = ({ option1, option2, desc1, desc2 }) => {
   return (
     <DescContainer>
-      <DescWrapper>
-        <Desc>
-          *{option1} : {desc1}
-        </Desc>
-        <Desc>
-          *{option2} : {desc2}
-        </Desc>
-      </DescWrapper>
+      <Desc>
+        *{option1} : {desc1}
+      </Desc>
+      <Desc>
+        *{option2} : {desc2}
+      </Desc>
     </DescContainer>
   );
 };

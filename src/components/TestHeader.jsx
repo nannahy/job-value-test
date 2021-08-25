@@ -1,25 +1,11 @@
 import styled from "styled-components";
-import { fontStyle4 } from "../styles/fontStyle";
-import { colors, TitleStyle1 } from "../styles/style";
+import { boxFont2 } from "../styles/fontStyle";
+import { colors } from "../styles/style";
+import { TitleH2 } from "./Fonts";
+import { Header } from "./Containers";
 
-const HeaderBox = styled.div`
-  display: grid;
-  grid-template-columns: 1fr auto;
-  padding: 30px 0 10px 0;
-  align-items: end;
-  row-gap: 8px;
-  position: sticky;
-  top: 0;
-  background: white;
-`;
-
-export const Title = styled.h2`
-  ${TitleStyle1};
-  color: ${colors.gray600};
-`;
 const ProgressPercentile = styled.p`
-  ${fontStyle4};
-  color: ${colors.gray600};
+  ${boxFont2};
 `;
 
 const ProgressStatus = styled.div`
@@ -47,14 +33,14 @@ const ProgressBar = progressRate => {
   );
 };
 
-const Header = ({ title, percentile, rate }) => {
+const TestHeader = ({ title, percentile }) => {
   return (
-    <HeaderBox>
-      <Title>{title}</Title>
+    <Header>
+      <TitleH2>{title}</TitleH2>
       <ProgressPercentile>{percentile}%</ProgressPercentile>
-      <ProgressBar progressRate={rate} />
-    </HeaderBox>
+      <ProgressBar progressRate={percentile} />
+    </Header>
   );
 };
 
-export default Header;
+export default TestHeader;
