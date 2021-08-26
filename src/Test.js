@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -12,13 +13,15 @@ import {
   Content,
   Footer,
 } from "./styledComponents";
-import { QuestionBox } from "./components";
+import { PageContent, PrevNextBtn } from "./components";
 import { addAnswer } from "./redux/action";
 
 const Test = () => {
   const history = useHistory();
-  const [questionList, setQuestionList] = useState([]);
+  const [page, setPage] = useState([0]);
+  const [currPage, setCurrPage] = useState(0);
   const [userAnswer, setUserAnswer] = useState({});
+
   const answer = useSelector(state => state.answer);
   const dispatch = useDispatch();
 
@@ -40,7 +43,12 @@ const Test = () => {
         score2: item.answerScore02,
       }));
 
-      setQuestionList(qObjList);
+      const newPage = [];
+      // eslint-disable-next-line no-plusplus
+      for (let i = 0; i <= qObjList.length; i += 5) {
+        newPage.push(qObjList.slice(i, i + 5));
+      }
+      setPage(newPage);
     })();
   }, []);
 
@@ -48,11 +56,10 @@ const Test = () => {
     const newAnswer = { ...userAnswer };
     newAnswer[idx] = `B${idx}=${value}`;
     setUserAnswer(newAnswer);
-    dispatch(addAnswer(userAnswer));
+    dispatch(addAnswer(newAnswer));
   };
 
   const checked = qNum => {
-    // answer에 자신의 qNum이 존재하는가? true : false
     if (answer[qNum]) {
       const a = answer[qNum].split("=")[1];
       return { bool: true, answerScore: a };
@@ -60,58 +67,50 @@ const Test = () => {
     return { bool: false, answerScore: null };
   };
 
-  // eslint-disable-next-line no-unused-vars
-  const checkActive = () => {
-    return questionList.length !== Object.keys(userAnswer).length;
-  };
+  const askNum = [currPage * 5 + 1, Math.min(28, currPage * 5 + 5)];
 
   const handleClick = e => {
-    // eslint-disable-next-line no-unused-expressions
-    e.target.name === "prev"
-      ? history.push("/test-example")
-      : history.push("./test-finished");
+    if (e.target.name === "prev") {
+      currPage === 0 && history.push("/test-example");
+      setCurrPage(curr => curr - 1);
+    } else {
+      currPage === page.length - 1 && history.push("./test-finished");
+      setCurrPage(curr => curr + 1);
+    }
   };
+
+  const checkActive = () => {
+    const checkCounter = Object.keys(answer).filter(
+      i => askNum[0] <= i && i <= askNum[1],
+    );
+    return checkCounter.length !== page[currPage].length;
+  };
+
+  const percentile = Math.ceil((Object.values(answer).length / 28) * 100);
 
   return (
     <TestContainer>
-      <Header>
+      <Header className="header">
         <Title>검사진행</Title>
-        <ProgressPercentile>0%</ProgressPercentile>
-        <ProgressBar progressRate="33" />
+        <ProgressPercentile>{percentile}%</ProgressPercentile>
+        <ProgressBar progressRate={percentile} />
       </Header>
       <Body>
         <Content>
-          직업과관련된 두 개의 가치 중에서 자신에게 더 중요한 가치에 표시하세요.
+          ({askNum.join("~")}) 직업과 관련된 두 개의 가치 중에서 자신에게 더
+          중요한 가치에 표시하세요.
         </Content>
-        {questionList.map(item => (
-          <QuestionBox
-            key={item.qNum}
-            qNum={item.qNum}
-            option1={item.option1}
-            option2={item.option2}
-            desc1={item.desc1}
-            desc2={item.desc2}
-            score1={item.score1}
-            score2={item.score2}
+        {!page ? (
+          <div />
+        ) : (
+          <PageContent
+            page={page[currPage]}
             optionClick={optionClick}
-            checked={checked(item.qNum)}
-            div={item}
+            checked={checked}
           />
-        ))}
+        )}
       </Body>
-      <Footer>
-        <button type="button" name="prev" onClick={e => handleClick(e)}>
-          이전
-        </button>
-        <button
-          type="button"
-          name="next"
-          disabled={checkActive()}
-          onClick={e => handleClick(e)}
-        >
-          다음
-        </button>
-      </Footer>
+      <PrevNextBtn handleClick={handleClick} checkActive={checkActive} />
     </TestContainer>
   );
 };

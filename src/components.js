@@ -1,4 +1,11 @@
-import { OptionBox, InfoContainer, Input } from "./styledComponents";
+import {
+  OptionBox,
+  InfoContainer,
+  Input,
+  DescContainer,
+  Footer,
+  PrevNextBtnBox,
+} from "./styledComponents";
 
 // start
 export const UserInfoBox = ({ userInfo, setUserInfo }) => {
@@ -46,11 +53,12 @@ const Option = ({ qNum, score, option, click, checked }) => {
   const handleClick = e => {
     const idx = e.target.name;
     const { value } = e.target;
-    return click(idx, value);
+    click(idx, value);
   };
 
   // eslint-disable-next-line consistent-return
   const handleCheck = score => {
+    // window.scrollTo(0, 0);
     if (checked.bool === false) return false;
     if (score === checked.answerScore) return true;
   };
@@ -72,14 +80,14 @@ const Option = ({ qNum, score, option, click, checked }) => {
 
 const DescBox = ({ option1, option2, desc1, desc2 }) => {
   return (
-    <div>
+    <DescContainer>
       <p>
         *{option1}: {desc1}
       </p>
       <p>
         *{option2}: {desc2}
       </p>
-    </div>
+    </DescContainer>
   );
 };
 
@@ -93,7 +101,6 @@ export const QuestionBox = ({
   score2,
   optionClick,
   checked,
-  div,
 }) => {
   return (
     <OptionBox>
@@ -118,5 +125,45 @@ export const QuestionBox = ({
         desc2={desc2}
       />
     </OptionBox>
+  );
+};
+
+export const PageContent = ({ page, optionClick, checked }) => {
+  if (page) {
+    const contentList = page.map(item => (
+      <QuestionBox
+        key={item.qNum}
+        qNum={item.qNum}
+        option1={item.option1}
+        option2={item.option2}
+        desc1={item.desc1}
+        desc2={item.desc2}
+        score1={item.score1}
+        score2={item.score2}
+        optionClick={optionClick}
+        checked={checked(item.qNum)}
+        div={item}
+      />
+    ));
+    return contentList;
+  }
+  return <div />;
+};
+
+export const PrevNextBtn = ({ handleClick, checkActive }) => {
+  return (
+    <Footer>
+      <PrevNextBtnBox type="button" name="prev" onClick={e => handleClick(e)}>
+        이전
+      </PrevNextBtnBox>
+      <PrevNextBtnBox
+        type="button"
+        name="next"
+        disabled={checkActive()}
+        onClick={e => handleClick(e)}
+      >
+        다음
+      </PrevNextBtnBox>
+    </Footer>
   );
 };
