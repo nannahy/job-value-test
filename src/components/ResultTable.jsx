@@ -14,7 +14,8 @@ export const TableTitle = styled.p`
   width: 100%;
   padding: 15px 0;
   text-align: center;
-  background: ${colors.gray100};
+  color: ${colors.blue700};
+  background: ${colors.blue50};
   margin-top: 16px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -23,14 +24,15 @@ export const TableTitle = styled.p`
 const InfoTable = styled.table`
   width: 100%;
   border-spacing: 8px 0;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 `;
 
 const InfoTh = styled.th`
   padding: 10px 0;
-  background: ${colors.gray100};
+  background: ${colors.blue50};
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  color: ${colors.blue700};
 `;
 
 const InfoTd = styled.td`

@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef } from "react";
-import { Chart } from "chart.js";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +16,7 @@ import {
   BasicFooter,
   Body,
 } from "../components/Containers";
-import ValueChart from "../components/ValueChart";
+import ValueChart2 from "../components/ValueChart2";
 
 const eduIndex = {
   1: "중졸",
@@ -115,7 +114,7 @@ const Result = () => {
         <Body>
           <UserInfoTable data={result} />
           <Title3>직업가치관 결과</Title3>
-          <ValueChart valueData={result.result} />
+          <ValueChart2 valueData={result.result} />
           <Title3>가치관과 관련이 높은 직업</Title3>
           <TableTitle>종사자 평균 학력별</TableTitle>
           <JobsTable data={jobEdu} />
