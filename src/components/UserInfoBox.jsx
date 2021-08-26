@@ -47,6 +47,7 @@ const InputBox = styled.div`
 
 const InfoLabel = styled.label`
   ${infoLabel};
+  cursor: pointer;
 `;
 
 const UserInfoBox = ({ userInfo, setUserInfo }) => {

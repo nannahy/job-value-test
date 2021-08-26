@@ -22,6 +22,7 @@ const OptionBox = styled.div`
 
 const OptionLabel = styled.label`
   ${testLabel}
+  cursor: pointer;
 `;
 
 const DescContainer = styled.div`
