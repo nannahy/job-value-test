@@ -5,6 +5,8 @@ import QuestionBox from "../components/QuestionBox";
 import Button from "../components/Buttons";
 import { useDispatch, useSelector } from "react-redux";
 import { addAnswer } from "../redux/Toolkit";
+import { BodyP1 } from "../components/Fonts";
+import ExampleDesc from "../components/ExampleDesc";
 
 const TestExample = () => {
   const history = useHistory();
@@ -24,6 +26,7 @@ const TestExample = () => {
     <BasicContainer1>
       <TestHeader title="검사예시" percentile={answer[0] ? 100 : 0} />
       <Body>
+        <ExampleDesc />
         <QuestionBox
           key="0"
           qNum="0"
@@ -35,8 +38,7 @@ const TestExample = () => {
           desc2="일하는 시간과 방식에 대해서 스스로 결정할 수 있는 것입니다."
           optionClick={optionClick}
           answer={answer}
-          question="직업과 관련된 두 개의 가치 중에서 자신에게 더 중요한 가치에 표시하세요.
-          가치의 뜻을 잘 모르겠다면 문항 아래에 있는 가치의 설명을 확인해보세요."
+          question="직업과 관련된 두 개의 가치 중에서 자신에게 더 중요한 가치에 표시하세요."
         />
       </Body>
       <Button
@@ -51,3 +53,4 @@ const TestExample = () => {
 };
 
 export default TestExample;
+

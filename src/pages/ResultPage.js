@@ -7,6 +7,9 @@ import {
   UserInfoTable,
   JobsTable,
   TableTitle,
+  ResultText,
+  GraphText,
+  JobsText,
 } from "../components/ResultTable";
 import Button from "../components/Buttons";
 import { TitleH1, Title3 } from "../components/Fonts";
@@ -17,6 +20,7 @@ import {
   Body,
 } from "../components/Containers";
 import ValueChart2 from "../components/ValueChart2";
+import ValueChart from "../components/ValueChart";
 
 const eduIndex = {
   1: "중졸",
@@ -95,8 +99,9 @@ const Result = () => {
 
   useEffect(() => {
     fetch(result).then(data => {
-      setJobEdu(data[0]);
-      setJobMajor(data[1]);
+      if (data)
+      {setJobEdu(data[0]);
+      setJobMajor(data[1]);}
     });
   }, []);
 
@@ -112,10 +117,13 @@ const Result = () => {
       </BasicHeader>
       {jobEdu && jobMajor && (
         <Body>
+          <ResultText />
           <UserInfoTable data={result} />
           <Title3>직업가치관 결과</Title3>
+          <GraphText name={result.name} highScoreValue={result.highScoreValue} lowScoreValue={result.lowScoreValue} />
           <ValueChart2 valueData={result.result} />
           <Title3>가치관과 관련이 높은 직업</Title3>
+          <JobsText name={result.name} highScoreValue={result.highScoreValue} />
           <TableTitle>종사자 평균 학력별</TableTitle>
           <JobsTable data={jobEdu} />
           <TableTitle>종사자 평균 전공별</TableTitle>

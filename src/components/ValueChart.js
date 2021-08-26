@@ -25,28 +25,17 @@ const getOptions = () => ({
   events: [],
   //scales 옵션만 적용이 안됨
   scales: {
-    xAxes: [
+    y: {
+        suggestedMin: 0,
+        suggestedMax: 10,
+        stepSize: 1,
+      },
+      x: 
       {
-        ticks: {
+
           fontColor: `${colors.gray800}`,
           fontSize: 16,
-        },
       },
-    ],
-    yAxes: [
-      {
-        gridLines: {
-          color: "red",
-        },
-        display: false,
-        ticks: {
-          beginAtZero: true,
-          min: 0,
-          max: 10,
-          stepSize: 1,
-        },
-      },
-    ],
   },
   plugins: {
     legend: {

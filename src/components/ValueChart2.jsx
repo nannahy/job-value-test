@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { fontStyle4 } from "../styles/fontStyle";
+import { fontStyle4, fontStyle6 } from "../styles/fontStyle";
 import { colors } from "../styles/style";
 
 const ChartContainer = styled.div`
@@ -52,6 +52,8 @@ const Bar = styled.div`
   background: rgba(0, 145, 234, 0.2);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  display: flex;
+  justify-content: center;
 `;
 
 const getLabels = data => data.map(item => item[1]);
@@ -68,8 +70,23 @@ const TableBox = () => {
   return <Table>{ver}</Table>;
 };
 
-const Datas = ({ data }) => {
-  const bars = data.map(score => <Bar score={score} />);
+const Score = styled.span`
+  ${fontStyle6};
+  color: ${colors.blue700};
+  margin-top: -24px;
+`;
+
+const Datas = ({ data, highScoreKey }) => {
+  const first = Number(highScoreKey[0][0]);
+  const second = Number(highScoreKey[1][0]);
+  const bars = data.map((score, idx) => (
+    <Bar score={score}>
+      <Score>
+        {idx + 1 === first ? "★★" : idx + 1 === second ? "★" : ""}
+        {score}
+      </Score>
+    </Bar>
+  ));
   return <DatasBox>{bars}</DatasBox>;
 };
 
@@ -79,12 +96,13 @@ const Values = ({ data }) => {
 };
 
 const ValueChart2 = ({ valueData }) => {
+  const highScoreKey = [...valueData].slice(0, 2);
   const data = [...valueData].sort();
 
   return (
     <ChartContainer>
       <TableBox />
-      <Datas data={getScores(data)} />
+      <Datas data={getScores(data)} highScoreKey={highScoreKey} />
       <Values data={getLabels(data)} />
     </ChartContainer>
   );

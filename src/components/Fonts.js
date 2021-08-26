@@ -21,6 +21,7 @@ export const TitleH2 = styled.h2`
 export const Title3 = styled.h2`
   ${fontStyle2};
   color: ${colors.gray800};
+  margin-bottom: 8px;
 `;
 
 export const BodyBoldP1 = styled.p`
@@ -46,4 +47,18 @@ export const BodyP2 = styled.p`
 export const DescP = styled.p`
   ${fontStyle6};
   color: ${colors.gray600};
+`;
+
+export const HighLight = styled.span`
+  ${fontStyle4};
+  color: ${colors.blue700};
+`;
+
+export const LowLight = styled.span`
+  ${fontStyle4};
+  color: ${colors.gray400};
+`;
+
+export const Bold = styled.span`
+  font-weight: 600;
 `;

@@ -6,25 +6,25 @@ import { Title3 } from "./Fonts";
 const BodyText = styled.p`
   ${fontStyle5};
   color: ${colors.gray800};
-  margin: 32px 0 56px 0;
+  margin: 14px 0 56px 0;
   text-align: center;
 
   > div {
-    height: 14px;
+    height: 8px;
   }
 `;
 
-const HighLight = styled.span`
+export const HighLight = styled.span`
   ${fontStyle4};
   color: ${colors.blue700};
 `;
 
-const LowLight = styled.span`
+export const LowLight = styled.span`
   ${fontStyle4};
   color: ${colors.gray400};
 `;
 
-const Bold = styled.span`
+export const Bold = styled.span`
   font-weight: 600;
 `;
 
