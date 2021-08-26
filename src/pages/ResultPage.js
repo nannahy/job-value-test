@@ -1,16 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { Chart } from "chart.js";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { resetInputs } from "../redux/Toolkit";
-import ResultTable from "../components/ResultTable";
+import {
+  UserInfoTable,
+  JobsTable,
+  TableTitle,
+} from "../components/ResultTable";
 import Button from "../components/Buttons";
-import { TitleH1 } from "../components/Fonts";
+import { TitleH1, Title3 } from "../components/Fonts";
 import {
   BasicContainer1,
   BasicHeader,
   BasicFooter,
+  Body,
 } from "../components/Containers";
+import ValueChart from "../components/ValueChart";
 
 const eduIndex = {
   1: "중졸",
@@ -88,9 +95,9 @@ const Result = () => {
   const [jobMajor, setJobMajor] = useState();
 
   useEffect(() => {
-    fetch(result).then(result => {
-      setJobEdu(result[0]);
-      setJobMajor(result[1]);
+    fetch(result).then(data => {
+      setJobEdu(data[0]);
+      setJobMajor(data[1]);
     });
   }, []);
 
@@ -105,7 +112,16 @@ const Result = () => {
         <TitleH1>직업가치관검사 결과표</TitleH1>
       </BasicHeader>
       {jobEdu && jobMajor && (
-        <ResultTable result={result} jobEdu={jobEdu} jobMajor={jobMajor} />
+        <Body>
+          <UserInfoTable data={result} />
+          <Title3>직업가치관 결과</Title3>
+          <ValueChart valueData={result.result} />
+          <Title3>가치관과 관련이 높은 직업</Title3>
+          <TableTitle>종사자 평균 학력별</TableTitle>
+          <JobsTable data={jobEdu} />
+          <TableTitle>종사자 평균 전공별</TableTitle>
+          <JobsTable data={jobMajor} />
+        </Body>
       )}
       <BasicFooter>
         <Button onClick={() => handleClick()}>다시 검사하기</Button>

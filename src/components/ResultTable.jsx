@@ -1,8 +1,6 @@
 import styled, { css } from "styled-components";
 import { colors } from "../styles/style";
 import { boxFont1, fontStyle4, fontStyle5 } from "../styles/fontStyle";
-import { Title3 } from "./Fonts";
-import { Body } from "./Containers";
 
 const borderStyleLight = css`
   border-top: 0.5px solid ${colors.gray300};
@@ -11,7 +9,7 @@ const borderStyleLight = css`
   border-right: 8px solid white;
 `;
 
-const TableTitle = styled.p`
+export const TableTitle = styled.p`
   ${boxFont1};
   width: 100%;
   padding: 15px 0;
@@ -74,21 +72,7 @@ const ValueTd = styled.td`
   padding: 10px 20px;
 `;
 
-const ResultTable = ({ result, jobEdu, jobMajor }) => {
-  return (
-    <Body>
-      <UserInfoTable data={result} />
-      <Title3>직업가치관 결과</Title3>
-      <Title3>가치관과 관련이 높은 직업</Title3>
-      <TableTitle>종사자 평균 학력별</TableTitle>
-      <JobsTable data={jobEdu} />
-      <TableTitle>종사자 평균 전공별</TableTitle>
-      <JobsTable data={jobMajor} />
-    </Body>
-  );
-};
-
-const UserInfoTable = ({ data }) => {
+export const UserInfoTable = ({ data }) => {
   return (
     <InfoTable>
       <Thead>
@@ -107,7 +91,7 @@ const UserInfoTable = ({ data }) => {
   );
 };
 
-const JobsTable = ({ data }) => {
+export const JobsTable = ({ data }) => {
   const makeList = key => {
     const values = data[key].join(", ");
     return (
@@ -129,5 +113,3 @@ const JobsTable = ({ data }) => {
     </Table>
   );
 };
-
-export default ResultTable;
