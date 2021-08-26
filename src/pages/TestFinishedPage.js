@@ -37,20 +37,6 @@ const getData = (name, gender, timeStamp, answerString) => ({
   answers: answerString,
 });
 
-const testData = timeStamp => ({
-  apikey: "91ba033859063edfb432487e1853ddb1",
-  qestrnSeq: "6",
-  trgetSe: "100209",
-  name: "Elice",
-  gender: "100323",
-  school: "",
-  grade: "",
-  email: "",
-  startDtm: timeStamp,
-  answers:
-    "B1=1 B2=3 B3=5 B4=7 B5=9 B6=11 B7=13 B8=15 B9=17 B10=19 B11=21 B12=23 B13=25 B14=27 B15=29 B16=31 B17=33 B18=35 B19=37 B20=39 B21=41 B22=43 B23=45 B24=47 B25=49 B26=51 B27=53 B28=55",
-});
-
 const jobValue = {
   1: "능력발휘",
   2: "자율성",
