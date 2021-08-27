@@ -16,6 +16,7 @@ const ProgressStatus = styled.div`
   height: 3px;
   border-radius: 1.5px;
   position: relative;
+  transition: width 0.5s;
 
   > div {
     background: ${colors.blue700};

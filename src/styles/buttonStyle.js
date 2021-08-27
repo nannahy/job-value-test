@@ -15,6 +15,7 @@ const buttonStyle = css`
   border: 1px solid ${colors.blue700};
   border-radius: 8px;
   background: white;
+  cursor: pointer;
 
   &:hover {
     ${({ disabled }) => !disabled && Hover}

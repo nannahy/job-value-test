@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import { colors, Line, clicked, Hover } from "../styles/style";
-import { fontStyle4 } from "../styles/fontStyle";
+import { fontStyle4, fontStyle6 } from "../styles/fontStyle";
 import { infoLabel } from "../styles/labelStyle";
 import buttonStyle from "../styles/buttonStyle";
 
 const InfoWrapper = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const InfoContainer = styled.div`
   width: 230px;
   display: flex;
   flex-direction: column;
-  margin: 20px 0 25px 0;
+  margin: 20px 0 14px 0;
 `;
 
 const Info = styled.p`
@@ -50,17 +50,26 @@ const InfoLabel = styled.label`
   cursor: pointer;
 `;
 
-const UserInfoBox = ({ userInfo, setUserInfo }) => {
+const Error = styled.p`
+  ${fontStyle6};
+  color: ${colors.gray400};
+  margin: 4px 0;
+  opacity: ${({ error }) => (error ? 1 : 0)};
+`;
+
+const UserInfoBox = ({ userInfo, setUserInfo, nameError, genderError }) => {
   const handleChange = e => {
     const userData = { type: e.target.type, value: e.target.value };
     return setUserInfo(userData);
   };
+  console.log("error", nameError, genderError);
 
   return (
     <InfoWrapper>
       <InfoContainer>
         <Info>이름</Info>
         <Name name={userInfo.name} handleChange={handleChange} />
+        <Error error={nameError}>이름을 입력해주세요</Error>
       </InfoContainer>
       <Line />
       <InfoContainer>
@@ -77,6 +86,7 @@ const UserInfoBox = ({ userInfo, setUserInfo }) => {
             userGender={userInfo.gender}
           />
         </InputBox>
+        <Error error={genderError}>성별을 선택해주세요</Error>
       </InfoContainer>
     </InfoWrapper>
   );

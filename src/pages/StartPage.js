@@ -27,14 +27,17 @@ const Start = () => {
   };
 
   const handleSubmit = () => {
+    console.log('클릭')
     setNameGender(userInfo);
     history.push("/test-example");
   };
 
+  const checkError = data => data.length > 0 ? false : true;
+
   return (
     <BasicContainer2>
       <TitleH1>직업가치관검사</TitleH1>
-      <UserInfoBox userInfo={userInfo} setUserInfo={setUserInfo} />
+      <UserInfoBox userInfo={userInfo} setUserInfo={setUserInfo} nameError={checkError(userName)} genderError={checkError(userGender)}/>
       <Button
         type="button"
         disabled={!userName || !userGender}
