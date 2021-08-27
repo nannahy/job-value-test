@@ -1,35 +1,29 @@
+import { createReducer } from "@reduxjs/toolkit";
+import { setName, setGender, addAnswer, setResult, resetInputs } from "./action";
+
 const initState = {
   name: "",
   gender: "",
   answer: {},
-  result: {},
+  result: null,
 };
 
-const Reducer = (state = initState, action) => {
-  switch (action.type) {
-    case "SET_NAME":
-      return {
-        ...state,
-        name: action.name,
-      };
-    case "SET_GENDER":
-      return {
-        ...state,
-        gender: action.gender,
-      };
-    case "ADD_ANSWER":
-      return {
-        ...state,
-        answer: { ...state.answer, ...action.answer },
-      };
-
-    case "GET_RESULT":
-      return {
-        result: action.result,
-      };
-    default:
-      return state;
-  }
-};
+const Reducer = createReducer(initState, builder => {
+  builder.addCase(setName, (state, action) => {
+    state.name = action.payload;
+  });
+  builder.addCase(setGender, (state, action) => {
+    state.gender = action.payload;
+  });
+  builder.addCase(addAnswer, (state, action) => {
+    state.answer = { ...state.answer, ...action.payload };
+  });
+  builder.addCase(setResult, (state, action) => {
+    state.result = action.payload;
+  });
+  builder.addCase(resetInputs, (state, action) => {
+    return initState;
+  });
+});
 
 export default Reducer;

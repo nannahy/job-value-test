@@ -4,8 +4,7 @@ import TestHeader from "../components/TestHeader";
 import QuestionBox from "../components/QuestionBox";
 import Button from "../components/Buttons";
 import { useDispatch, useSelector } from "react-redux";
-import { addAnswer } from "../redux/Toolkit";
-import { BodyP1 } from "../components/Fonts";
+import { addAnswer } from "../redux/action";
 import ExampleDesc from "../components/ExampleDesc";
 
 const TestExample = () => {

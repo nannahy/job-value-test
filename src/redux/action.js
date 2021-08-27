@@ -1,19 +1,7 @@
-export const setName = name => ({
-  type: "SET_NAME",
-  name,
-});
+import { createAction } from "@reduxjs/toolkit";
 
-export const setGender = gender => ({
-  type: "SET_GENDER",
-  gender,
-});
-
-export const addAnswer = answer => ({
-  type: "ADD_ANSWER",
-  answer,
-});
-
-export const getResult = result => ({
-  type: "GET_RESULT",
-  result,
-});
+export const setName = createAction("SET_NAME");
+export const setGender = createAction("SET_GENDER");
+export const addAnswer = createAction("ADD_ANSWER");
+export const setResult = createAction("SET_RESULT");
+export const resetInputs = createAction("RESET_INPUTS");

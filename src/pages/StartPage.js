@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { BasicContainer2 } from "../components/Containers";
 import UserInfoBox from "../components/UserInfoBox";
 import Button from "../components/Buttons";
-import { setGender, setName } from "../redux/Toolkit";
+import { setGender, setName } from "../redux/action";
 import { TitleH1 } from "../components/Fonts";
 
 const Start = () => {

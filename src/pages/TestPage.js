@@ -1,32 +1,13 @@
 /* eslint-disable no-unused-expressions */
 import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addAnswer } from "../redux/Toolkit";
+import { addAnswer } from "../redux/action";
 import { BasicContainer1, Body, Footer } from "../components/Containers";
 import TestHeader from "../components/TestHeader";
 import QuestionBox from "../components/QuestionBox";
 import { Button2 } from "../components/Buttons";
-
-const fetch = async () => {
-  const response = await axios.get(
-    "https://www.career.go.kr/inspct/openapi/test/questions?apikey=91ba033859063edfb432487e1853ddb1&q=6",
-  );
-
-  const qList = response.data.RESULT;
-  const qObjList = qList.map(item => ({
-    qNum: item.qitemNo,
-    option1: item.answer01,
-    option2: item.answer02,
-    desc1: item.answer03,
-    desc2: item.answer04,
-    score1: item.answerScore01,
-    score2: item.answerScore02,
-    question: item.question,
-  }));
-  return qObjList;
-};
+import { getQuestion } from "../utils/api";
 
 const Test = () => {
   const history = useHistory();
@@ -43,7 +24,7 @@ const Test = () => {
     : [];
 
   useEffect(() => {
-    fetch().then(setQuestionList);
+    getQuestion().then(setQuestionList);
   }, []);
 
   const optionClick = (qNum, score) => {
@@ -53,8 +34,11 @@ const Test = () => {
 
   const prevClick = () => {
     window.scrollTo(0, 0);
-    currPage === 1 && history.push("/test-example");
-    setCurrPage(curr => curr - 1);
+    if (currPage === 1) {
+      history.push("/test-example");
+    } else {
+      setCurrPage(curr => curr - 1);
+    }
   };
 
   const nextClick = () => {
