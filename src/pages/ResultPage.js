@@ -12,7 +12,7 @@ import {
   JobsText,
 } from "../components/ResultTable";
 import Button from "../components/Buttons";
-import { TitleH1, Title3 } from "../components/Fonts";
+import { Title4, Title3 } from "../components/Fonts";
 import {
   BasicContainer1,
   BasicHeader,
@@ -113,7 +113,7 @@ const Result = () => {
   return (
     <BasicContainer1>
       <BasicHeader>
-        <TitleH1>직업가치관검사 결과표</TitleH1>
+        <Title4>직업가치관검사 결과표</Title4>
       </BasicHeader>
       {jobEdu && jobMajor && (
         <Body>

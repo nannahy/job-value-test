@@ -11,6 +11,7 @@ import { colors } from "../styles/style";
 export const TitleH1 = styled.h1`
   ${fontStyle1};
   color: ${colors.gray800};
+  margin-bottom: 16px;
 `;
 
 export const TitleH2 = styled.h2`
@@ -22,6 +23,11 @@ export const Title3 = styled.h2`
   ${fontStyle2};
   color: ${colors.gray800};
   margin-bottom: 8px;
+`;
+
+export const Title4 = styled.h1`
+  ${fontStyle1};
+  color: ${colors.gray800};
 `;
 
 export const BodyBoldP1 = styled.p`

@@ -12,7 +12,7 @@ const InfoContainer = styled.div`
   width: 230px;
   display: flex;
   flex-direction: column;
-  margin: 20px 0 14px 0;
+  margin: 8px 0;
 `;
 
 const Info = styled.p`
