@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# 1. 서비스 소개
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+**🎯 목표**
 
-In the project directory, you can run:
+- [직업심리검사 API](https://www.career.go.kr/cnet/front/openapi/openApiTestCenter.do)를 사용하여 **사용자의 직업 적합도를 확인**할 수 있는 웹 서비스를 제공한다  
+- 사용자가 중요시하는 직업 가치관이 무엇인지 알 수 있다
+- 사용자의 직업가치관과 가장 적합도가 높은 직업이 무엇인지 알 수 있다
 
-### `yarn start`
+**실행 방법**
+```
+yarn or yarn install
+yarn start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# 2. **기술 스택**
 
-### `yarn test`
+`React` 컴포넌트를 이용해 UI 유지보수 용이, 활발한 커뮤니티
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`Axios` 브라우저 호환성, 편의성
 
-### `yarn build`
+`styled-components` 반복적으로 사용되는 스타일 컴포넌트화 해서 사용 가능
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 3. **기능 설명**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+**시작 페이지**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- 사용자 정보를 입력받는 페이지. 
+- 이름과 성별을 모두 입력했을 때 검사하기 버튼 활성화
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**예시 페이지**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- 검사 방법을 설명하는 페이지  
+- 항목 클릭 시 검사하기 버튼 활성화
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+**테스트 페이지**
 
-## Learn More
+- 해당 페이지의 항목을 모두 선택했을 경우 다음 버튼 활성화
+- 상태바를 통해 테스트 진행률 확인
+- 이전 페이지로 이동한 뒤 다시 돌아와도 선택 값 유지
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**검사 완료 페이지**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 검사 완료 문구와 함께 사용자가 중요시하는 가치 상위 2개, 하위 2개 표기
+- 결과보기 버튼 클릭 시 결과 페이지로 이동
 
-### Code Splitting
+**결과 페이지**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 사용자 정보와 검사 날짜 표시
+- 결과 데이터 받아와 그래프와 테이블로 결과 구현
 
-### Analyzing the Bundle Size
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# 4. 시연 영상 및 웹 페이지 캡쳐
 
-### Making a Progressive Web App
+**시작 페이지**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![정보입력](https://user-images.githubusercontent.com/77048150/146632137-49df412d-2631-4702-8459-1ec68e640a14.gif)
 
-### Advanced Configuration
+**예시 페이지**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![예시](https://user-images.githubusercontent.com/77048150/146632146-8dd655bf-034c-4693-83bc-f360560dd53b.gif)
 
-### Deployment
+**검사 페이지**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![테스트](https://user-images.githubusercontent.com/77048150/146632148-b6e6cbff-7951-44bd-96d6-e9a1a2280a4d.gif)
 
-### `yarn build` fails to minify
+**검사 완료 페이지**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![결과1](https://user-images.githubusercontent.com/77048150/146632172-1b0e52b4-b047-4fb0-bad7-e8e714388ab7.gif)
+
+**결과 페이지**
+
+![결과2](https://user-images.githubusercontent.com/77048150/146632177-7724e30a-3c6c-49b4-bc8e-a03cc0e6e8d7.gif)
+
