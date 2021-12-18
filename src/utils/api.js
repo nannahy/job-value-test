@@ -1,25 +1,32 @@
 import axios from "axios";
 import editResult from "./parseResultData";
-import { eduIndex, majorIndex, editEduJobs, editMajorJobs } from "./parseJobsData";
+import {
+  eduIndex,
+  majorIndex,
+  editEduJobs,
+  editMajorJobs,
+} from "./parseJobsData";
+
+const KEY = process.env.REACT_APP_KEY;
 
 // 질문 데이터
 export const getQuestion = async () => {
-    const response = await axios.get(
-      "https://www.career.go.kr/inspct/openapi/test/questions?apikey=91ba033859063edfb432487e1853ddb1&q=6",
-    );
-  
-    const qList = response.data.RESULT;
-    const qObjList = qList.map(item => ({
-      qNum: item.qitemNo,
-      option1: item.answer01,
-      option2: item.answer02,
-      desc1: item.answer03,
-      desc2: item.answer04,
-      score1: item.answerScore01,
-      score2: item.answerScore02,
-      question: item.question,
-    }));
-    return qObjList;
+  const response = await axios.get(
+    `https://www.career.go.kr/inspct/openapi/test/questions?apikey=${KEY}&q=6`,
+  );
+
+  const qList = response.data.RESULT;
+  const qObjList = qList.map(item => ({
+    qNum: item.qitemNo,
+    option1: item.answer01,
+    option2: item.answer02,
+    desc1: item.answer03,
+    desc2: item.answer04,
+    score1: item.answerScore01,
+    score2: item.answerScore02,
+    question: item.question,
+  }));
+  return qObjList;
 };
 
 // 결과1. 직업 가치 데이터
@@ -33,29 +40,29 @@ const jobValue = {
   7: "자기계발",
   8: "창의성",
 };
-  
+
 const getResult = async seqKey => {
-    const response = await axios.get(
-      `https://www.career.go.kr/inspct/api/psycho/report?seq=${seqKey}`,
-    );
-    const result = editResult(response.data, jobValue);
-    return result;
-  };
-  
-export const postResult = async data => {
-    try {
-      const response = await axios.post(
-        "https://www.career.go.kr/inspct/openapi/test/report",
-        data,
-      );
-      const seqKey = response.data.RESULT.url.split("=")[1];
-      const result = await getResult(seqKey);
-      return { ...result };
-    } catch (e) {
-      console.log(e);
-    }
+  const response = await axios.get(
+    `https://www.career.go.kr/inspct/api/psycho/report?seq=${seqKey}`,
+  );
+  const result = editResult(response.data, jobValue);
+  return result;
 };
-  
+
+export const postResult = async data => {
+  try {
+    const response = await axios.post(
+      "https://www.career.go.kr/inspct/openapi/test/report",
+      data,
+    );
+    const seqKey = response.data.RESULT.url.split("=")[1];
+    const result = await getResult(seqKey);
+    return { ...result };
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 // 결과2. 직업 정보 데이터
 const getJobsByEdu = async highScoreKey => {
   const response = await axios.get(
