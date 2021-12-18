@@ -8,8 +8,13 @@
 - 사용자의 직업가치관과 가장 적합도가 높은 직업이 무엇인지 알 수 있다
 
 **실행 방법**
+1. 커리어넷 오픈 api key 발급 후 .env파일 작성
 ```
-yarn or yarn install
+REACT_APP_KEY=
+```
+2. 라이브러리 설치 및 실행
+```
+yarn 혹은 yarn install
 yarn start
 ```
 
