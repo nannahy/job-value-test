@@ -6,24 +6,26 @@ import TestFinished from "./pages/TestFinishedPage";
 import Result from "./pages/ResultPage";
 import NotFound from "./pages/NotFoundPage";
 
+const PATH = "/job-value-test";
+
 const SetPages = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Redirect exact from="/" to="/start" />
-        <Route path="/start">
+        <Redirect exact from={`${PATH}/`} to={`${PATH}/start`} />
+        <Route path={`${PATH}/start`}>
           <Start />
         </Route>
-        <Route path="/test-example">
+        <Route path={`${PATH}/test-example`}>
           <TestExample />
         </Route>
-        <Route path="/test">
+        <Route path={`${PATH}/test`}>
           <Test />
         </Route>
-        <Route path="/test-finished">
+        <Route path={`${PATH}/test-finished`}>
           <TestFinished />
         </Route>
-        <Route path="/result">
+        <Route path={`${PATH}/result`}>
           <Result />
         </Route>
         <Route>
